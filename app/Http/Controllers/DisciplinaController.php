@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class DisciplinaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        // mas, você pode fazer uso dos métodos fluentes: only e except
+        // ex.: $this->middleware('auth')->only(['create', 'store']);
+        // ex.: $this->middleware('auth')->except('index');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -45,7 +52,7 @@ class DisciplinaController extends Controller
 
         Disciplina::create($request->all());
 
-        return redirect()->route('disciplina.index')
+        return redirect()->route('disciplinas.index')
                         ->with('success','Disciplina criada com Sucesso!');
     }
 
@@ -68,7 +75,7 @@ class DisciplinaController extends Controller
      */
     public function edit(Disciplina $disciplina)
     {
-        return view('disciplina.form',compact('disciplina'));
+        return view('disciplina.formEdit',compact('disciplina'));
     }
 
     /**
@@ -88,7 +95,7 @@ class DisciplinaController extends Controller
         ]);
         $disciplina->update($request->all());
 
-        return redirect()->route('disciplina.index')
+        return redirect()->route('disciplinas.index')
                         ->with('success','Disciplina atualizada com Sucesso!');
     }
 
@@ -102,7 +109,7 @@ class DisciplinaController extends Controller
     {
         $disciplina->delete();
 
-        return redirect()->route('disciplina.index')
+        return redirect()->route('disciplinas.index')
                         ->with('success','Disciplina excluida com Sucesso!');
     }
 }

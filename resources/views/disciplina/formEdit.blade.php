@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Incluir Disciplina</h2>
+                <h2>Editar Disciplina</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('disciplinas.index') }}">
@@ -27,14 +27,15 @@
         </div>
     @endif
 
-    <form action="{{ route('disciplinas.store') }}" method="POST">
+    <form action="{{ route('disciplinas.update', $disciplina->id) }}" method="POST">
         @csrf
+        @method('PUT')
 
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Disciplina:</strong>
-                    <input type="text" name="nome" class="form-control" placeholder="Disciplina">
+                    <input type="text" name="nome" value="{{$disciplina->nome}}" class="form-control" placeholder="Disciplina">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -43,7 +44,7 @@
                     <label class="input-group-text" for="inputGroupSelect01">Curso</label>
                     </div>
                     <select class="custom-select" id="inputGroupSelect01" name="curso">
-                    <option selected>Selecione...</option>
+                    <option selected>{{$disciplina->curso}}</option>
                     <option value="Agronomia">Agronomia</option>
                     <option value="Ciencias Naturais">Ciencias Naturais</option>
                     <option value="Pedagogia">Pedagogia</option>
@@ -57,7 +58,7 @@
                     <label class="input-group-text" for="inputGroupSelect02">Semestre</label>
                     </div>
                     <select class="custom-select" id="inputGroupSelect02" name="semestre">
-                    <option selected>Selecione...</option>
+                    <option selected>{{$disciplina->semestre}}</option>
                     <option value="Primeiro">Primeiro</option>
                     <option value="Segundo">Segundo</option>
                     <option value="Terceiro">Terceiro</option>
@@ -73,8 +74,8 @@
             </div>
         <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-save"></i> Salvar
+                    <button type="submit" class="btn btn-success" onclick="return confirm('Deseja mesmo Atualizar esta Disciplina?');">
+                            <i class="fas fa-sync-alt"></i> Atualizar
                     </button>
             </div>
         </div>

@@ -118,12 +118,19 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-file',
-            'label'       => 4,
+            'text'        => 'Disciplinas',
+            'url'         => '/disciplinas',
+            'icon'        => 'fas fa-address-book',
+            //'label'       => 4,
             'label_color' => 'success',
         ],
+        // [
+        //     'text'        => 'disciplinas',
+        //     'url'         => '/disciplinas',
+        //     'icon'        => 'far fa-file',
+        //     //'label'       => 4,
+        //     'label_color' => 'success',
+        // ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
