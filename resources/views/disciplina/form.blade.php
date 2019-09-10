@@ -56,7 +56,7 @@
                     <div class="input-group-prepend">
                     <label class="input-group-text" for="inputGroupSelect02">Semestre</label>
                     </div>
-                    <select class="custom-select" id="inputGroupSelect02" name="semestre">
+                    <select class="form-control" id="inputGroupSelect02" name="semestre">
                     <option selected>Selecione...</option>
                     <option value="Primeiro">Primeiro</option>
                     <option value="Segundo">Segundo</option>
@@ -71,7 +71,7 @@
                     </select>
                 </div>
             </div>
-        <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+            <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                     <button type="submit" class="btn btn-primary">
                         <i class="fas fa-save"></i> Salvar

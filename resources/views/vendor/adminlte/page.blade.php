@@ -57,6 +57,9 @@
                 <div class="navbar-custom-menu">
 
                     <ul class="nav navbar-nav">
+                        <li class="nav-item">
+                        <a class="nav-link"><i class="fa fa-user"></i> {{Auth::user()->name}}</a>
+                        </li>
                         <li>
                             @if(config('adminlte.logout_method') == 'GET' || !config('adminlte.logout_method') && version_compare(\Illuminate\Foundation\Application::VERSION, '5.3.0', '<'))
                                 <a href="{{ url(config('adminlte.logout_url', 'auth/logout')) }}">

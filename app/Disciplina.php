@@ -14,4 +14,9 @@ class Disciplina extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function pagina()
+    {
+        return $this->hasOne(Pagina::class);
+    }
 }

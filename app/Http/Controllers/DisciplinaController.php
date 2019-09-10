@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Disciplina;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DisciplinaController extends Controller
 {
@@ -21,9 +22,11 @@ class DisciplinaController extends Controller
      */
     public function index()
     {
-        $disciplinas = Disciplina::all();
-        return view('disciplina.index', compact('disciplinas'));
+           $disciplinas = Disciplina::all();
+           return view('disciplina.index', compact('disciplinas'));
+
     }
+
 
     /**
      * Show the form for creating a new resource.

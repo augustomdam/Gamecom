@@ -35,7 +35,9 @@
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition @yield('body_class')">
+<body class="hold-transition @yield('body_class')" style="background: url('fundologin.png') no-repeat center center fixed;
+    background-size: cover;
+    ">
 
 @yield('body')
 

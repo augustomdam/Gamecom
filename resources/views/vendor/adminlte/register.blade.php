@@ -58,10 +58,7 @@
                         </span>
                     @endif
                 </div>
-                <div class="form-group">
-                    <label for="exampleFormControlFile1">Imagem do Perfil</label>
-                    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="imagem">
-                  </div>
+
                 <button type="submit"
                         class="btn btn-primary btn-block btn-flat"
                 >{{ trans('adminlte::adminlte.register') }}</button>

@@ -22,6 +22,14 @@ class CreateDisciplinasTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
+
+        Schema::create('disciplinas_users', function (Blueprint $table) {
+            $table->bigInteger('disciplina_id')->unsigned();
+            $table->foreign('disciplina_id')->references('id')->on('disciplinas');
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->timestamps();
+        });
     }
 
     /**
