@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEquipesTable extends Migration
+class CreateMatriculasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,16 @@ class CreateEquipesTable extends Migration
      */
     public function up()
     {
-        Schema::create('equipes', function (Blueprint $table) {
+        Schema::create('matriculas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nome');
-            $table->string('logo');
             $table->bigInteger('disciplina_id')->unsigned();
             $table->foreign('disciplina_id')->references('id')->on('disciplinas');
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->bigInteger('equipe_id')->unsigned();
+            $table->foreign('equipe_id')->references('id')->on('equipes');
             $table->timestamps();
         });
-
     }
 
     /**
@@ -31,6 +32,6 @@ class CreateEquipesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('equipes');
+        Schema::dropIfExists('matriculas');
     }
 }

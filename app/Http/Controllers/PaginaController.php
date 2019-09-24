@@ -88,7 +88,7 @@ class PaginaController extends Controller
     public function edit(Pagina $pagina)
     {
         $disciplinas = Disciplina::all();
-        return view('pagina.formEdit',compact('pagina', 'disciplinas'));
+        return view('pagina.formEdit',compact('pagina'));
     }
 
     /**
@@ -102,7 +102,7 @@ class PaginaController extends Controller
     {
         $request->validate([
             'titulo' => 'required',
-            'banner' => 'required',
+            'banner' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
             'corpo' => 'required',
             'tipo' => 'required',
             'disciplina_id' => 'required',

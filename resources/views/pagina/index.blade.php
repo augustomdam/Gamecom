@@ -42,7 +42,6 @@
                         <a class="btn btn-info" href="{{ route('paginas.show',$pagina->id) }}">
                             <i class="fas fa-eye"></i>
                         </a>
-
                         <a class="btn btn-primary" href="{{ route('paginas.edit',$pagina->id) }}" >
                             <i class="fas fa-pencil-alt"></i>
                         </a>
@@ -51,12 +50,10 @@
                         <button type="submit" class="btn btn-danger " onclick="return confirm('Deseja mesmo Excluir a Pagina?');">
                             <i class="fas fa-trash"></i>
                         </button>
-
                     </form>
                 </td>
             </tr>
-
-            @endforeach
+        @endforeach
         </table>
     </div>
 </div>

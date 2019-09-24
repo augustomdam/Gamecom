@@ -136,6 +136,51 @@ return [
                     'url'  => '/paginas',
                     'icon'        => 'fas fa-bars',
                 ],
+                [
+                    'text' => 'Gamificações',
+                    'url'  => '/gamificacaos',
+                    'icon'        => 'fas fa-gamepad',
+                ],
+                [
+                    'text' => 'Medalhas',
+                    'url'  => '/medalhas',
+                    'icon'        => 'fas fa-medal',
+                ],
+                [
+                    'text' => 'Equipes',
+                    'url'  => '/equipes',
+                    'icon'        => 'fas fa-users',
+                ],
+                [
+                    'text' => 'Fases',
+                    'url'  => '/fases',
+                    'icon'        => 'fas fa-laptop-code',
+                ],
+
+            ],
+        ],
+
+        [
+            'text'        => 'Aluno',
+            'icon'        => 'fas fa-user-graduate',
+            //'label'       => 4,
+            'label_color' => 'yellow',
+            'submenu' =>[
+                [
+                    'text' => 'Equipes',
+                    'url'  => '/equipes',
+                    'icon'        => 'fas fa-users',
+                ],
+                [
+                    'text' => 'Matriculas',
+                    'url'  => '/matriculas',
+                    'icon'        => 'fas fa-business-time',
+                ],
+                [
+                    'text' => 'Pontuações',
+                    'url'  => '/pontuacaos',
+                    'icon'        => 'fas fa-chart-line',
+                ],
             ],
         ],
         // [
@@ -145,6 +190,29 @@ return [
         //     //'label'       => 4,
         //     'label_color' => 'success',
         // ],
+        ['header' => 'Configurações de Usuários'],
+        [
+            'text'        => 'Usuários',
+            'icon'        => 'fas fa-users',
+            'label_color' => 'yellow',
+            'submenu' =>[
+                [
+                    'text' => 'Lista de Usuários',
+                    'url'  => '/users/list',
+                    'icon'        => 'fas fa-users',
+                ],
+                [
+                    'text' => 'Funções',
+                    'url'  => '',
+                    'icon'        => 'fas fa-user-plus',
+                ],
+                [
+                    'text' => 'Permissões',
+                    'url'  => '',
+                    'icon'        => 'fas fa-user-shield',
+                ],
+            ],
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',

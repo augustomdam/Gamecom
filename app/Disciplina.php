@@ -19,4 +19,21 @@ class Disciplina extends Model
     {
         return $this->hasOne(Pagina::class);
     }
+    public function gamificacacoes()
+    {
+        return $this->hasOne(Gamificacao::class);
+    }
+    public function equipes()
+    {
+        return $this->hasMany(Equipe::class);
+    }
+    public function fases()
+    {
+        return $this->hasMany(Fase::class);
+    }
+
+    public function matriculas()
+    {
+        return $this->hasMany(Matricula::class);
+    }
 }

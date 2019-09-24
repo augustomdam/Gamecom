@@ -3,9 +3,11 @@
 @section('adminlte_css')
     <link rel="stylesheet"
           href="{{ asset('vendor/adminlte/dist/css/skins/skin-' . config('adminlte.skin', 'blue') . '.min.css')}} ">
+
     @stack('css')
     @yield('css')
 @stop
+
 
 @section('body_class', 'skin-' . config('adminlte.skin', 'blue') . ' sidebar-mini ' . (config('adminlte.layout') ? [
     'boxed' => 'layout-boxed',
@@ -57,8 +59,11 @@
                 <div class="navbar-custom-menu">
 
                     <ul class="nav navbar-nav">
+
                         <li class="nav-item">
-                        <a class="nav-link"><i class="fa fa-user"></i> {{Auth::user()->name}}</a>
+                            <a class="nav-link">
+                                <img src="{{ asset('storage/'. Auth::user()->imagem) }}" class="img-circle"> {{Auth::user()->name}}
+                            </a>
                         </li>
                         <li>
                             @if(config('adminlte.logout_method') == 'GET' || !config('adminlte.logout_method') && version_compare(\Illuminate\Foundation\Application::VERSION, '5.3.0', '<'))
@@ -104,6 +109,7 @@
         </aside>
         @endif
 
+
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             @if(config('adminlte.layout') == 'top-nav')
@@ -144,3 +150,4 @@
     @stack('js')
     @yield('js')
 @stop
+

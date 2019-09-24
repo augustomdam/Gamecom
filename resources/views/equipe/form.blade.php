@@ -1,24 +1,23 @@
 @extends('adminlte::page')
 
-@section('title', 'Paginas')
+@section('title', 'Equipes')
 
 @section('content')
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="text-center">
-                <h2>Incluir Pagina</h2>
+                <h2>Incluir Equipe</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('paginas.index') }}">
+                <a class="btn btn-primary" href="{{ route('equipes.index') }}">
                     <i class="fas fa-undo-alt"></i> Voltar
                 </a>
             </div>
         </div>
     </div>
-
     @if ($errors->any())
         <div class="alert alert-danger">
-            <strong>Atenção!</strong> Problemas ao Salvar a Pagina.<br><br>
+            <strong>Atenção!</strong> Problemas ao Salvar a Equipe.<br><br>
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -27,26 +26,18 @@
         </div>
     @endif
 
-    <form action="{{ route('paginas.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('equipes.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Titulo:</strong>
-                    <input type="text" name="titulo" class="form-control" placeholder="titulo">
+                    <strong>Nome:</strong>
+                    <input type="text" name="nome" class="form-control" placeholder="Nome">
                 </div>
                 <div class="form-group">
-                    <strong>Banner:</strong>
-                    <input type="file" name="banner" class="form-control-file">
-                </div>
-                <div class="form-group">
-                    <strong>Corpo:</strong>
-                    <textarea name="corpo" class="form-control" placeholder="corpo"></textarea>
-                </div>
-                <div class="form-group">
-                    <strong>Tipo:</strong>
-                    <input type="text-area" name="tipo" class="form-control" placeholder="tipo">
+                    <strong>Logo:</strong>
+                    <input type="file" name="logo" class="form-control-file">
                 </div>
                 <div class="form-group">
                     <div class="input-group-prepend">
@@ -59,7 +50,7 @@
                         @endforeach
                     </select>
                 </div>
-                <button type="submit" class="btn btn-success">
+                <button type="submit" class="btn btn-success pull-left">
                     <i class="fas fa-save"></i> Salvar
                 </button>
             </div>

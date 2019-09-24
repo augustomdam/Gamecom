@@ -1,12 +1,12 @@
 @extends('adminlte::page')
 
-@section('title', 'Disciplinas')
+@section('title', 'Paginas')
 
 @section('content')
     <div class="row">
         <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Editar Disciplina</h2>
+            <div class="text-center">
+                <h2>Editar Pagina</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('paginas.index') }}">
@@ -43,7 +43,7 @@
                 </div>
                 <div class="form-group">
                     <strong>Corpo:</strong>
-                    <input type="text-area" name="corpo" value="{{$pagina->corpo}}" class="form-control" placeholder="corpo">
+                    <textarea name="corpo" class="form-control" placeholder="corpo">{{$pagina->corpo}}</textarea>
                 </div>
                 <div class="form-group">
                     <strong>Tipo:</strong>
@@ -54,13 +54,11 @@
                         <label class="input-group-text" for="inputGroupSelect01">Disciplina</label>
                     </div>
                     <select class="custom-select" id="inputGroupSelect01" name="disciplina_id">
-                        @foreach ($disciplinas as $disciplina)
-                            <option value="{{$disciplina->id}}">{{$disciplina->nome}}</option>
-                        @endforeach
+                            <option value="{{$pagina->disciplina_id}}"></option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-save"></i> Salvar
+                <button type="submit" class="btn btn-success">
+                    <i class="fa fa-save"></i> Salvar
                 </button>
             </div>
         </div>
