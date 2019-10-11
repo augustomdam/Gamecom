@@ -2,7 +2,9 @@
 
 @section('title', 'Disciplinas')
 
+
 @section('content')
+
 <div class="card text-center">
     <div class="card-header">
         <h2>Lista de Disciplinas</h2>

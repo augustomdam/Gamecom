@@ -36,4 +36,5 @@ class Disciplina extends Model
     {
         return $this->hasMany(Matricula::class);
     }
+
 }

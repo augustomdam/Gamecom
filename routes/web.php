@@ -2,8 +2,17 @@
 
 use App\Disciplina;
 //home page
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/', 'publica\HomeController@index');
+Route::group(['prefix' => 'disciplina'], function () {
+    Route::get('/{disciplina}', 'publica\HomeController@detalhe')->name('disciplina.detalhe');
+    Route::get('/{disciplina}/fases', 'publica\FasesController@index')->name('disciplina.fases');
+    Route::get('/{disciplina}/fases/{fase}', 'publica\FasesController@show')->name('fase.show');
+    Route::get('/{disciplina}/medalhas', 'publica\MedalhaController@index')->name('disciplina.medalhas');
+    Route::get('/{disciplina}/gamificacao', 'publica\GamificacaoController@index')->name('disciplina.gamificacao');
+    Route::get('/{disciplina}/ranking', 'publica\PontuacaoController@index')->name('disciplina.ranking');
 });
 
 //autenticaçao
@@ -29,6 +38,8 @@ Route::group(['middleware' => ['verified']], function () {
     Route::resource('pontuacaos', 'PontuacaoController');
     //users
     Route::get('users/list', 'UserController@list');
-    Route::get('user/profile', 'UserController@profile');
+    Route::get('user/profile', 'UserController@profile')->name('user.profile');
+    Route::get('user/edit/{user}', 'UserController@profileEdit')->name('user.edit');
+    Route::put('user/{user}', 'UserController@profileUpdate')->name('user.update');
 
 });

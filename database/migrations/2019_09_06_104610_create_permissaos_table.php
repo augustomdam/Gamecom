@@ -20,6 +20,7 @@ class CreatePermissaosTable extends Migration
         });
 
         Schema::create('funcaos_permissaos', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->bigInteger('funcao_id')->unsigned();
             $table->foreign('funcao_id')
                     ->references('id')->on('funcaos');

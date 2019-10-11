@@ -21,12 +21,15 @@
                 <th>Função</th>
             </tr>
             @foreach ($users as $user)
+            @php
+                $funcaos = $user->funcaos
+            @endphp
             <tr>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
                 <td>
                     <img src="{{ asset('storage/'. $user->imagem) }}"
-                    alt="{{$user->imagem}}" width="100px" height="50px">
+                    alt="{{$user->imagem}}" width="70px" height="50px" class="img-circle">
                 </td>
                 <td>
                     @foreach ($funcaos as $funcao )

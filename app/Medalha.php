@@ -12,7 +12,7 @@ class Medalha extends Model
 
    public function fase()
    {
-       return $this->hasOne(Fase::class);
+       return $this->belongsTo(Fase::class);
    }
 
 }

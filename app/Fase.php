@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use pontuacao;
+// use Pontuacao;
 
 class Fase extends Model
 {

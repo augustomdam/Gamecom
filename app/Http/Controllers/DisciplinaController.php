@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Curso;
 use App\Disciplina;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,7 +36,7 @@ class DisciplinaController extends Controller
      */
     public function create()
     {
-        return view('disciplina.form');
+        return view('disciplina.form', compact('cursos'));
     }
 
     /**

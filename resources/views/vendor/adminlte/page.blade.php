@@ -21,7 +21,7 @@
         <!-- Main Header -->
         <header class="main-header">
             @if(config('adminlte.layout') == 'top-nav')
-            <nav class="navbar navbar-static-top">
+            <nav class="navbar navbar-fixed-top">
                 <div class="container">
                     <div class="navbar-header">
                         <a href="{{ url(config('adminlte.dashboard_url', 'home')) }}" class="navbar-brand">
@@ -49,29 +49,29 @@
             </a>
 
             <!-- Header Navbar -->
-            <nav class="navbar navbar-static-top" role="navigation">
+            <nav class="navbar navbar-fixed-top" role="navigation">
                 <!-- Sidebar toggle button-->
                 <a href="#" class="sidebar-toggle fa5" data-toggle="push-menu" role="button">
                     <span class="sr-only">{{ trans('adminlte::adminlte.toggle_navigation') }}</span>
                 </a>
             @endif
                 <!-- Navbar Right Menu -->
-                <div class="navbar-custom-menu">
+                <div class="navbar-nav  mr-n2 ml-auto">
 
-                    <ul class="nav navbar-nav">
-
-                        <li class="nav-item">
-                            <a class="nav-link">
-                                <img src="{{ asset('storage/'. Auth::user()->imagem) }}" class="img-circle"> {{Auth::user()->name}}
+                    <ul class="nav navbar-custom-menu">
+                        <li class="nav-item mr-4" >
+                            <a class="nav-link" href="{{route('user.profile', Auth::user()->id)}}">
+                                <img src="{{ asset('storage/'. Auth::user()->imagem) }}" class="img-circle" style="width: 20px; height: 20px;">
+                                  {{Auth::user()->name}}
                             </a>
                         </li>
-                        <li>
+                        <li class="nav-item">
                             @if(config('adminlte.logout_method') == 'GET' || !config('adminlte.logout_method') && version_compare(\Illuminate\Foundation\Application::VERSION, '5.3.0', '<'))
-                                <a href="{{ url(config('adminlte.logout_url', 'auth/logout')) }}">
+                                <a class="nav-link" href="{{ url(config('adminlte.logout_url', 'auth/logout')) }}">
                                     <i class="fa fa-fw fa-power-off"></i> {{ trans('adminlte::adminlte.log_out') }}
                                 </a>
                             @else
-                                <a href="#"
+                                <a class="nav-link" href="#"
                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                                 >
                                     <i class="fa fa-fw fa-power-off"></i> {{ trans('adminlte::adminlte.log_out') }}
@@ -122,6 +122,7 @@
             </section>
 
             <!-- Main content -->
+
             <section class="content">
 
                 @yield('content')

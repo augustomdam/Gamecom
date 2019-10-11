@@ -28,7 +28,11 @@ class MatriculaController extends Controller
      */
     public function create()
     {
-        $alunos = Funcao::find(3)->users;
+        // $alunos = Funcao::find(3)->users;
+        $aluno = Funcao::where('nome', 'aluno')->get();
+        foreach ($aluno as $a) {
+            $alunos = Funcao::find($a->id)->users;
+        }
         $disciplinas = Disciplina::all();
         $equipes = Equipe::all();
 
@@ -74,7 +78,11 @@ class MatriculaController extends Controller
      */
     public function edit(Matricula $matricula)
     {
-        $alunos = Funcao::find(3)->users;
+        // $alunos = Funcao::find(3)->users;
+        $aluno = Funcao::where('nome', 'aluno')->get();
+        foreach ($aluno as $a) {
+            $alunos = Funcao::find($a->id)->users;
+        }
         $disciplinas = Disciplina::all();
         $equipes = Equipe::all();
 

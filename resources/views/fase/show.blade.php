@@ -36,8 +36,9 @@
                     <i class="fas fa-file"> {{$fase->documento}}</i>
                     </a></td>
                     <td>{{ \Carbon\Carbon::parse($fase->prazo)->format('d/m/Y')}}</td>
-                    <td>{{ $fase->medalha->nome }}</td>
-                    <td>{{ $fase->disciplina->nome }}</td>
+                    <td><img src="{{ asset('storage/'. $fase->medalha->imagem) }}"
+                        alt="{{$fase->banner}}" width="100px" height="50px"></td>
+                    <td>{{ $fase->medalha->nome}}</td>
                     <td>
                         <form action="{{ route('fases.destroy',$fase->id) }}" method="POST">
                             <a class="btn btn-info" href="{{ route('fases.index') }}">

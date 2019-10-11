@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
+                <div class="input-group mb-3">
                     <div class="input-group-prepend">
                     <label class="input-group-text" for="inputGroupSelect01">Curso</label>
                     </div>
@@ -46,28 +46,34 @@
                     <option selected>Selecione...</option>
                     <option value="Agronomia">Agronomia</option>
                     <option value="Ciencias Naturais">Ciencias Naturais</option>
+                    <option value="Educação do Campo">Educação do Campo</option>
+                    <option value="Geografia">Geografia</option>
+                    <option value="História">História</option>
+                    <option value="Letras Inglês">Letras Inglês</option>
+                    <option value="Letras Português">Letras Português</option>
+                    <option value="Matemática">Matemática</option>
                     <option value="Pedagogia">Pedagogia</option>
-                    <option value="Sistema de Informacao">Sistema de Informacao</option>
+                    <option value="Sistema de Informação">Sistema de Informação</option>
                     </select>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                    <label class="input-group-text" for="inputGroupSelect02">Semestre</label>
+                        <label class="input-group-text" for="inputGroupSelect02">Semestre</label>
                     </div>
                     <select class="form-control" id="inputGroupSelect02" name="semestre">
-                    <option selected>Selecione...</option>
-                    <option value="Primeiro">Primeiro</option>
-                    <option value="Segundo">Segundo</option>
-                    <option value="Terceiro">Terceiro</option>
-                    <option value="Quarto">Quarto</option>
-                    <option value="Quinto">Quinto</option>
-                    <option value="Sexto">Sexto</option>
-                    <option value="Setimo">Setimo</option>
-                    <option value="Oitavo">Oitavo</option>
-                    <option value="Nono">Nono</option>
-                    <option value="Decimo">Decimo</option>
+                        <option selected>Selecione...</option>
+                        <option value="Primeiro">Primeiro</option>
+                        <option value="Segundo">Segundo</option>
+                        <option value="Terceiro">Terceiro</option>
+                        <option value="Quarto">Quarto</option>
+                        <option value="Quinto">Quinto</option>
+                        <option value="Sexto">Sexto</option>
+                        <option value="Setimo">Setimo</option>
+                        <option value="Oitavo">Oitavo</option>
+                        <option value="Nono">Nono</option>
+                        <option value="Decimo">Decimo</option>
                     </select>
                 </div>
             </div>
