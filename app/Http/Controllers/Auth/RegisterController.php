@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Funcao;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Http\Request;
 
 
 class RegisterController extends Controller
@@ -54,8 +55,6 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-
-
         ]);
     }
 
@@ -68,14 +67,28 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
 
-        return User::create([
+        $User = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            //'imagem' => $data['imagem']->storeAs('imagem', "{$data['email']}.jpg"),
 
         ]);
+        $user = User::where('name', $data['name'])->select('id')->get();
+        foreach ($user as $u) {
+            $user_id = $u->id;
+        }
+        // dd($user_id);
+        $funcao = Funcao::where('nome', 'aluno')->select('id')->get();
+        foreach ($funcao as $f) {
+            $funcao_id = $f->id;
+        }
+        // dd($funcao);
+        DB::table('users_funcaos')->insert([
+            'user_id' => $user_id,
+            'funcao_id' => $funcao_id,
+        ]);
 
-
+        return $User;
     }
- }
+
+}

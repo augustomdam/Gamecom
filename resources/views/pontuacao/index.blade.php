@@ -6,17 +6,20 @@
 <div class="card text-center">
     <div class="card-header">
         <h2>Lista de Pontuações</h2>
-            <div class="pull-right">
-                <a class="btn btn-warning" href="{{ route('pontuacaos.create') }}">
-                    <i class="fas fa-plus-circle"></i> Criar Pontuação
-                </a>
-            </div>
+        <div class="pull-right">
+            {{-- <a class="btn btn-warning" href="{{ route('pontuacaos.geraRanking') }}">
+                <i class="fas fa-chart-bar"></i> Gerar Ranking
+            </a> --}}
+            <a class="btn btn-warning" href="{{ route('pontuacaos.create') }}">
+                <i class="fas fa-plus-circle"></i> Criar Pontuação
+            </a>
+        </div>
     </div>
     <div class="card-body">
         @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-                <p>{{ $message }}</p>
-            </div>
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
         @endif
         <table class="table table-bordered">
             <tr>
@@ -40,12 +43,13 @@
                             <i class="fas fa-eye"></i>
                         </a>
 
-                        <a class="btn btn-primary" href="{{ route('pontuacaos.edit',$ponto->id) }}" >
+                        <a class="btn btn-primary" href="{{ route('pontuacaos.edit',$ponto->id) }}">
                             <i class="fas fa-pencil-alt"></i>
                         </a>
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger " onclick="return confirm('Deseja mesmo Excluir a Pontuação?');">
+                        <button type="submit" class="btn btn-danger "
+                            onclick="return confirm('Deseja mesmo Excluir a Pontuação?');">
                             <i class="fas fa-trash"></i>
                         </button>
 
@@ -55,6 +59,7 @@
 
             @endforeach
         </table>
+        {{ $pontuacaos->links() }}
     </div>
 </div>
 @endsection

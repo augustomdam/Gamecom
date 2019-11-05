@@ -23,7 +23,7 @@ class PaginaController extends Controller
      */
     public function index()
     {
-        $paginas = Pagina::all();
+        $paginas = Pagina::paginate(10);
         return view('pagina.index', compact('paginas'));
     }
 

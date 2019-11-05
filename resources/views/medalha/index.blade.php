@@ -53,6 +53,7 @@
 
             @endforeach
         </table>
+        {{ $medalhas->links() }}
     </div>
 </div>
 @endsection

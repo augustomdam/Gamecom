@@ -17,7 +17,7 @@ class MatriculaController extends Controller
      */
     public function index()
     {
-        $matriculas = Matricula::all();
+        $matriculas = Matricula::paginate(10);
         return view('matricula.index', compact('matriculas'));
     }
 

@@ -15,7 +15,7 @@ class GamificacaoController extends Controller
      */
     public function index()
     {
-        $gamificacaos = Gamificacao::all();
+        $gamificacaos = Gamificacao::paginate(10);;
 
         return view('gamificacao.index', compact('gamificacaos'));
     }

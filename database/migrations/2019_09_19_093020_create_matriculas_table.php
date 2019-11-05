@@ -16,11 +16,11 @@ class CreateMatriculasTable extends Migration
         Schema::create('matriculas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('disciplina_id')->unsigned();
-            $table->foreign('disciplina_id')->references('id')->on('disciplinas');
+            $table->foreign('disciplina_id')->references('id')->on('disciplinas')->onDelete('cascade');
             $table->bigInteger('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->bigInteger('equipe_id')->unsigned();
-            $table->foreign('equipe_id')->references('id')->on('equipes');
+            $table->foreign('equipe_id')->references('id')->on('equipes')->onDelete('cascade');
             $table->timestamps();
         });
     }

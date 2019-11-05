@@ -14,7 +14,7 @@ class MedalhaController extends Controller
      */
     public function index()
     {
-        $medalhas = Medalha::all();
+        $medalhas = Medalha::paginate(10);;
         return view('medalha.index', compact('medalhas'));
     }
 

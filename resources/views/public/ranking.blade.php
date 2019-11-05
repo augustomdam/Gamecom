@@ -4,7 +4,7 @@
 
 @section('content')
 
-{{-- {{dd($equipe)}} --}}
+{{-- {{dd($ranking_aluno)}} --}}
 
 <div class="container mt-5">
     <div class="row">
@@ -29,7 +29,7 @@
                     <a href="{{route('disciplina.gamificacao', $disciplina->id)}}">
                         <img src="{{ asset('images/gamificacao.jpg') }}" class="card-img">
                     </a>
-                    <a href="">
+                    <a href="{{route('disciplina.ranking', $disciplina->id)}}">
                         <img src="{{ asset('images/menu-ranking.png') }}" class="card-img mt-1">
                     </a>
                     <a href="{{route('disciplina.medalhas', $disciplina->id)}}">
@@ -40,36 +40,74 @@
         </div>
         <div class="col-md-9">
             <div class="card">
+                <div class="card-header">
+                    <h3 class="text-center"><i class="fas fa-chart-area"></i> Rankings</h3>
+                </div>
                 <div class="card-body">
-                    <h3 class="text-center">Ranking de Pontuações</h3>
+                    <h4 class="text-center">
+                        <i class="fas fa-chart-area"></i> Ranking das Equipes <i class="fas fa-users"></i>
+                    </h4>
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Aluno</th>
-                                <th>Pontuação</th>
-                                <th>Fase</th>
-                                <th>Equipe</th>
-                                <th>Medalhas</th>
+                                {{-- <th>Nº</th> --}}
+                                <th>Nome da Equipe</th>
+                                <th>Pontuação Total</th>
+                                {{-- <th>Medalhas</th> --}}
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($pontuacaos as $pontuacao)
-                            @foreach ($pontuacao as $ponto)
+                            @foreach ($ranking_equipe as $re )
                             <tr>
-                                <td>{{$ponto->user->name}}</td>
-                                <td>{{$ponto->ponto_obtido}}</td>
-                                <td>{{$ponto->fase->nomefase}}</td>
-                                <td>{{$equipe[$ponto->user->id]->nome}}</td>
-                            <td>
-                                <img src="{{asset('storage/'.$ponto->fase->medalha->imagem) }}"  alt="{{$ponto->fase->medalha->nome}}" width="10%">
-                            </td>
+                                <td>{{$re->equipe->nome}}</td>
+                                <td>{{$re->ponto_total}}</td>
+                                {{-- <td>
+                                    @foreach ($medalhas as $medalha)
+                                        @foreach ($medalha as $m)
+                                            <img src="{{asset('storage/'.$m->fase->medalha->imagem) }}"
+                                alt="{{$m->nome}}"
+                                width="10%">
+                                @endforeach
+                                @endforeach
+                                </td> --}}
                             </tr>
-                            @endforeach
-                            <td class="text-center"><b>Pontuação Geral: </b>{{$notas[$ponto->user->id]}}</td>
                             @endforeach
                         </tbody>
                     </table>
+                    <br>
+                    <h4 class="text-center">
+                        <i class="fas fa-chart-area"></i> Ranking dos Alunos <i class="fas fa-user-graduate"></i>
+                    </h4>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                {{-- <th>Nº</th> --}}
+                                <th>Aluno</th>
+                                <th>Pontuação</th>
+                                {{-- <th>Medalhas</th> --}}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($ranking_alunos as $ranking_aluno )
+                            <tr>
+                                <td>{{$ranking_aluno->user->name}}</td>
+                                <td>{{$ranking_aluno->ponto_total}}</td>
+                                {{-- {{dd($medalha)}} --}}
+                            </tr>
+                            @endforeach
+                            {{-- @foreach ($medalhas as $medalha )
+                            <tr>
+                                <td>
+                                    @foreach ($medalha as $m)
+                                    <img src="{{asset('storage/'.$m->fase->medalha->imagem) }}" alt="{{$m->nome}}"
+                                    width="10%">
+                                    @endforeach
+                                </td>
+                            </tr>
+                            @endforeach --}}
 
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

@@ -67,6 +67,7 @@
             </tr>
             @endforeach
         </table>
+        {{ $fases->links() }}
     </div>
 </div>
 @endsection

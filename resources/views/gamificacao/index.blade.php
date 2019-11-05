@@ -60,6 +60,7 @@
 
             @endforeach
         </table>
+        {{ $gamificacaos->links() }}
     </div>
 </div>
 @endsection

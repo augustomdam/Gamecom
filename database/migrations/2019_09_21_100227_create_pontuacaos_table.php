@@ -17,9 +17,9 @@ class CreatePontuacaosTable extends Migration
             $table->bigIncrements('id');
             $table->double('ponto_obtido');
             $table->bigInteger('fase_id')->unsigned();
-            $table->foreign('fase_id')->references('id')->on('fases');
+            $table->foreign('fase_id')->references('id')->on('fases')->onDelete('cascade');
             $table->bigInteger('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

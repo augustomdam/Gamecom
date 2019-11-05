@@ -23,7 +23,7 @@ class DisciplinaController extends Controller
      */
     public function index()
     {
-           $disciplinas = Disciplina::all();
+           $disciplinas = Disciplina::paginate(10);
            return view('disciplina.index', compact('disciplinas'));
 
     }
@@ -36,7 +36,7 @@ class DisciplinaController extends Controller
      */
     public function create()
     {
-        return view('disciplina.form', compact('cursos'));
+        return view('disciplina.form');
     }
 
     /**

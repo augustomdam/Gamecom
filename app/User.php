@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Notifications\ResetPassword;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -44,8 +45,8 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function funcaos()
     {
-    return $this->belongsToMany(Funcao::class,'users_funcaos', 'user_id','funcao_id')
-                    ->withTimestamps();
+        return $this->belongsToMany(Funcao::class, 'users_funcaos', 'user_id', 'funcao_id')
+            ->withTimestamps();
     }
 
     public function matriculas()
@@ -56,6 +57,16 @@ class User extends Authenticatable implements MustVerifyEmail
     public function pontuacaos()
     {
         return $this->hasMany(Pontuacao::class);
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+
+        $this->notify(new ResetPassword($token));
+    }
+
+    public function ranking(){
+        return $this->hasOne(Ranking::class);
     }
 
 }

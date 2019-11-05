@@ -51,7 +51,7 @@
                     <strong>Descrição do Ranking e Premiação:</strong>
                     <textarea type="text" name="desc_ranking_premiacao" class="form-control"></textarea>
                 </div>
-                <div class="form-group">
+                <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="inputGroupSelect01">Disciplina</label>
                     </div>

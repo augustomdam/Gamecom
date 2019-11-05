@@ -31,7 +31,7 @@
 
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
+                <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <label class="input-group-text" for="selectOrdem">Ordem</label>
                         </div>
@@ -77,7 +77,7 @@
                         <strong>Prazo:</strong>
                         <input type="date" name="prazo" class="form-control">
                 </div>
-                <div class="form-group">
+                <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="selectMedalha">Medalha</label>
                     </div>
@@ -88,7 +88,7 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="form-group">
+                <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="selectDisciplina">Disciplina</label>
                     </div>
@@ -99,7 +99,7 @@
                         @endforeach
                     </select>
                 </div>
-                <button type="submit" class="btn btn-success pull-left">
+                <button type="submit" class="btn btn-success">
                     <i class="fas fa-save"></i> Salvar
                 </button>
             </div>

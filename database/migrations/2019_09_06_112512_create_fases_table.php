@@ -25,9 +25,9 @@ class CreateFasesTable extends Migration
             $table->string('documento');
             $table->date('prazo');
             $table->bigInteger('medalha_id')->unsigned();
-            $table->foreign('medalha_id')->references('id')->on('medalhas');
+            $table->foreign('medalha_id')->references('id')->on('medalhas')->onDelete('cascade');
             $table->bigInteger('disciplina_id')->unsigned();
-            $table->foreign('disciplina_id')->references('id')->on('disciplinas');
+            $table->foreign('disciplina_id')->references('id')->on('disciplinas')->onDelete('cascade');
             $table->timestamps();
         });
     }

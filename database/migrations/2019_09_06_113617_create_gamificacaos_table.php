@@ -21,7 +21,7 @@ class CreateGamificacaosTable extends Migration
             $table->text('desc_medalhas');
             $table->text('desc_ranking_premiacao');
             $table->bigInteger('disciplina_id')->unsigned();
-            $table->foreign('disciplina_id')->references('id')->on('disciplinas');
+            $table->foreign('disciplina_id')->references('id')->on('disciplinas')->onDelete('cascade');
             $table->timestamps();
         });
     }

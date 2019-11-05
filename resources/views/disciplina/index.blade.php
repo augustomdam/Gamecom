@@ -58,7 +58,7 @@
 
             @endforeach
         </table>
+        {{ $disciplinas->links() }}
     </div>
 </div>
-{{-- {!! $disciplinas->links() !!} --}}
 @endsection

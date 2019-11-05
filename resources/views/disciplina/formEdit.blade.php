@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
+                <div class="input-group mb-3">
                     <div class="input-group-prepend">
                     <label class="input-group-text" for="inputGroupSelect01">Curso</label>
                     </div>

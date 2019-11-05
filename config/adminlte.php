@@ -203,12 +203,12 @@ return [
                 ],
                 [
                     'text' => 'Funções',
-                    'url'  => '',
+                    'url'  => '/funcaos',
                     'icon'        => 'fas fa-user-plus',
                 ],
                 [
                     'text' => 'Permissões',
-                    'url'  => '',
+                    'url'  => '/permissaos',
                     'icon'        => 'fas fa-user-shield',
                 ],
             ],
@@ -219,11 +219,11 @@ return [
             'url'  => 'user/profile',
             'icon' => 'fas fa-fw fa-user',
         ],
-        [
-            'text' => 'change_password',
-            'url'  => 'password/reset ',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
+        // [
+        //     'text' => 'change_password',
+        //     'url' => route('user.edit', $user),
+        //     'icon' => 'fas fa-fw fa-lock',
+        // ],
 
         /*['header' => 'labels'],
         [

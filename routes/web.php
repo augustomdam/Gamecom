@@ -1,10 +1,5 @@
 <?php
 
-use App\Disciplina;
-//home page
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 Route::get('/', 'publica\HomeController@index');
 Route::group(['prefix' => 'disciplina'], function () {
     Route::get('/{disciplina}', 'publica\HomeController@detalhe')->name('disciplina.detalhe');
@@ -36,10 +31,22 @@ Route::group(['middleware' => ['verified']], function () {
     Route::resource('matriculas', 'MatriculaController');
     //crud pontuacaos
     Route::resource('pontuacaos', 'PontuacaoController');
+    //crud funções
+    Route::resource('funcaos', 'FuncaosController');
+    //crud permissões
+    Route::resource('permissaos', 'PermissaoController');
     //users
-    Route::get('users/list', 'UserController@list');
+    Route::get('users/list', 'UserController@list')->name('user.list');
     Route::get('user/profile', 'UserController@profile')->name('user.profile');
     Route::get('user/edit/{user}', 'UserController@profileEdit')->name('user.edit');
     Route::put('user/{user}', 'UserController@profileUpdate')->name('user.update');
+    //users-funcaos
+    Route::get('funcao/user/{user}', 'UserController@atribuirFuncao')->name('user.atribuir');
+    Route::post('funcao/user', 'UserController@atribuiFuncao')->name('user.atribuiFuncao');
+    Route::delete('user/{user}/funcao/{funcao}', 'UserController@deleteFuncao')->name('user.deleteFuncao');
+    //funcaos-permissoes
+    Route::get('funcao/{funcao}', 'UserController@atribuirPermissao')->name('permissao.atribuir');
+    Route::post('funcao/permissao', 'UserController@atribuiPermissao')->name('funcao.atribuiPermissao');
+    Route::delete('funcao/{funcao}/permissao/{permissao}', 'UserController@deletePermissao')->name('funcao.deletePermissao');
 
 });

@@ -37,4 +37,8 @@ class Disciplina extends Model
         return $this->hasMany(Matricula::class);
     }
 
+    public function ranking(){
+        return $this->hasOne(Ranking::class);
+    }
+
 }

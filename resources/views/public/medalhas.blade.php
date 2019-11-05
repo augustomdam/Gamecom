@@ -20,14 +20,14 @@
                 </div>
             </div>
             <div class="card">
-                <a href="">
+                <a href="{{route('disciplina.gamificacao', $disciplina->id)}}">
                     <div class="card-header">Gamificação</div>
                 </a>
                 <div class="card-body">
-                    <a href="">
+                    <a href="{{route('disciplina.gamificacao', $disciplina->id)}}">
                         <img src="{{ asset('images/gamificacao.jpg') }}" class="card-img">
                     </a>
-                    <a href="">
+                    <a href="{{route('disciplina.ranking', $disciplina->id)}}">
                         <img src="{{ asset('images/menu-ranking.png') }}" class="card-img mt-1">
                     </a>
                     <a href="{{route('disciplina.medalhas', $disciplina->id)}}">

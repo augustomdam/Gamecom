@@ -35,6 +35,9 @@
         <a class="nav navbar-brand ml-5" href="{{url('/')}}">
             <img src="{{ asset('images/gamecom_logo.png') }}" width="30%">
         </a>
+        <a class="nav-item text-black-50" href="{{url('/')}}">
+            <i class="fa fa-home"></i> Home
+        </a>
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
             aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -88,7 +91,8 @@
     </div>
     <footer class="footer">
         <div class="container">
-            <span class="text-muted">Developed by <a href="" target="_blank">Augusto Santos</a> &copy; 2019</span>
+            <span class="text-muted">
+                Developed by <a href="" target="_blank">Augusto Santos <i class="fa fa-facebook"></i></a> &copy; 2019</span>
         </div>
     </footer>
 </body>

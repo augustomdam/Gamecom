@@ -51,6 +51,7 @@
             </tr>
             @endforeach
         </table>
+        {{ $equipes->links() }}
     </div>
 </div>
 @endsection

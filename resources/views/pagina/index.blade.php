@@ -55,6 +55,7 @@
             </tr>
         @endforeach
         </table>
+        {{ $paginas->links() }}
     </div>
 </div>
 @endsection

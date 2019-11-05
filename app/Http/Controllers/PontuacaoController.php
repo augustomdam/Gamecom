@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Pontuacao;
 use App\Fase;
 use App\Funcao;
+use App\Ranking;
+use App\User;
+use App\Matricula;
 use Illuminate\Http\Request;
 
 class PontuacaoController extends Controller
@@ -16,7 +19,7 @@ class PontuacaoController extends Controller
      */
     public function index()
     {
-        $pontuacaos = Pontuacao::all();
+        $pontuacaos = Pontuacao::paginate(10);
         return view('pontuacao.index', compact('pontuacaos'));
     }
 
@@ -53,8 +56,33 @@ class PontuacaoController extends Controller
 
         Pontuacao::create($request->all());
 
+        $ranking = Ranking::where('user_id', $request->user_id)->count();
+        $disciplinas = Matricula::where('user_id', $request->user_id)->select('disciplina_id', 'equipe_id')->get();
+        foreach ($disciplinas as $disciplina) {
+            $disciplina_id = $disciplina->disciplina_id;
+            $equipe_id = $disciplina->equipe_id;
+        }
+        if ($ranking == 0) {
+
+            Ranking::create([
+                'user_id' => $request->user_id, 'ponto_total' => 0,
+                'disciplina_id' => $disciplina_id, 'equipe_id' => $equipe_id
+            ]);
+            $ranking = User::find($request->user_id)->ranking();
+            $pontuacaos = Pontuacao::where('user_id', $request->user_id)->sum('ponto_obtido');
+            $ranking->update(['ponto_total' => $pontuacaos]);
+        } else {
+            $pontuacaos = Pontuacao::where('user_id', $request->user_id)->sum('ponto_obtido');
+            $ranking = Ranking::where('user_id', $request->user_id);
+            $ranking->update([
+                'user_id' => $request->user_id, 'ponto_total' => $pontuacaos,
+                'disciplina_id' => $disciplina_id, 'equipe_id' => $equipe_id
+            ]);
+        }
+
+
         return redirect()->route('pontuacaos.index')
-                        ->with('success','Pontuação criada com Sucesso!');
+            ->with('success', 'Pontuação criada com Sucesso!');
     }
 
     /**
@@ -82,7 +110,7 @@ class PontuacaoController extends Controller
         foreach ($aluno as $a) {
             $alunos = Funcao::find($a->id)->users;
         }
-        return view('pontuacao.formEdit', compact('pontuacao','fases', 'alunos'));
+        return view('pontuacao.formEdit', compact('pontuacao', 'fases', 'alunos'));
     }
 
     /**
@@ -102,8 +130,20 @@ class PontuacaoController extends Controller
 
         $pontuacao->update($request->all());
 
+        $disciplinas = Matricula::where('user_id', $request->user_id)->select('disciplina_id', 'equipe_id')->get();
+        foreach ($disciplinas as $disciplina) {
+            $disciplina_id = $disciplina->disciplina_id;
+            $equipe_id = $disciplina->equipe_id;
+        }
+        $pontuacaos = Pontuacao::where('user_id', $request->user_id)->sum('ponto_obtido');
+        $ranking = User::find($request->user_id)->ranking();
+        $ranking->update([
+            'user_id' => $request->user_id, 'ponto_total' => $pontuacaos,
+            'disciplina_id' => $disciplina_id, 'equipe_id' => $equipe_id
+        ]);
+
         return redirect()->route('pontuacaos.index')
-                        ->with('success','Pontuação Atualizada com Sucesso!');
+            ->with('success', 'Pontuação Atualizada com Sucesso!');
     }
 
     /**
@@ -116,7 +156,11 @@ class PontuacaoController extends Controller
     {
         $pontuacao->delete();
 
+        $pontuacaos = Pontuacao::where('user_id', $pontuacao->user_id)->sum('ponto_obtido');
+        $ranking = User::find($pontuacao->user_id)->ranking();
+        $ranking->update(['user_id' => $pontuacao->user_id, 'ponto_total' => $pontuacaos]);
+
         return redirect()->route('pontuacaos.index')
-                        ->with('success','Pontuação Excluída com Sucesso!');
+            ->with('success', 'Pontuação Excluída com Sucesso!');
     }
 }

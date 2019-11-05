@@ -18,7 +18,7 @@ class CreateEquipesTable extends Migration
             $table->string('nome');
             $table->string('logo');
             $table->bigInteger('disciplina_id')->unsigned();
-            $table->foreign('disciplina_id')->references('id')->on('disciplinas');
+            $table->foreign('disciplina_id')->references('id')->on('disciplinas')->onDelete('cascade');
             $table->timestamps();
         });
 

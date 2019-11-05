@@ -39,7 +39,7 @@
                     <strong>Logo:</strong>
                     <input type="file" name="logo" class="form-control-file">
                 </div>
-                <div class="form-group">
+                <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="inputGroupSelect01">Disciplina</label>
                     </div>

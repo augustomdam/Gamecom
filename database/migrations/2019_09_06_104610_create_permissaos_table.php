@@ -23,10 +23,10 @@ class CreatePermissaosTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('funcao_id')->unsigned();
             $table->foreign('funcao_id')
-                    ->references('id')->on('funcaos');
+                    ->references('id')->on('funcaos')->onDelete('cascade');
             $table->bigInteger('permissao_id')->unsigned();
             $table->foreign('permissao_id')
-                    ->references('id')->on('permissaos');
+                    ->references('id')->on('permissaos')->onDelete('cascade');
             $table->timestamps();
         });
     }

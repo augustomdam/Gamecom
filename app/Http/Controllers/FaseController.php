@@ -16,7 +16,7 @@ class FaseController extends Controller
      */
     public function index()
     {
-        $fases = Fase::all();
+        $fases = Fase::paginate(10);
         return view('fase.index', compact('fases'));
     }
 
@@ -63,7 +63,7 @@ class FaseController extends Controller
             'objetivo' => $request['objetivo'],
             'pontuacao' => $request['pontuacao'],
             'avaliacao' => $request['avaliacao'],
-            'documento' => $request['documento']->storeAs('imagem', $docName),
+            'documento' => $request['documento']->storeAs('docs', $docName),
             'prazo' => $request['prazo'],
             'medalha_id' => $request['medalha_id'],
             'disciplina_id' => $request['disciplina_id'],
@@ -130,7 +130,7 @@ class FaseController extends Controller
             'objetivo' => $request['objetivo'],
             'pontuacao' => $request['pontuacao'],
             'avaliacao' => $request['avaliacao'],
-            'documento' => $request['documento']->storeAs('imagem', $docName),
+            'documento' => $request['documento']->storeAs('docs', $docName),
             'prazo' => $request['prazo'],
             'medalha_id' => $request['medalha_id'],
             'disciplina_id' => $request['disciplina_id'],

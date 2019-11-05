@@ -23,10 +23,10 @@ class CreateFuncaosTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')
-                    ->references('id')->on('users');
+                    ->references('id')->on('users')->onDelete('cascade');
             $table->bigInteger('funcao_id')->unsigned();
             $table->foreign('funcao_id')
-                    ->references('id')->on('funcaos');
+                    ->references('id')->on('funcaos')->onDelete('cascade');
             $table->timestamps();
         });
     }

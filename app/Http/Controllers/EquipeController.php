@@ -15,7 +15,7 @@ class EquipeController extends Controller
      */
     public function index()
     {
-        $equipes = Equipe::all();
+        $equipes = Equipe::paginate(10);
         return view('equipe.index', compact('equipes'));
     }
 
