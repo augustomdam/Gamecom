@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Disciplina;
 use App\Pontuacao;
 use App\Fase;
 use App\Funcao;
@@ -19,7 +20,7 @@ class PontuacaoController extends Controller
      */
     public function index()
     {
-        $pontuacaos = Pontuacao::paginate(10);
+        $pontuacaos = Pontuacao::paginate(30);
         return view('pontuacao.index', compact('pontuacaos'));
     }
 
@@ -30,14 +31,16 @@ class PontuacaoController extends Controller
      */
     public function create()
     {
+        //autorização
+        $this->authorize('create', Pontuacao::class);
         $fases = Fase::all();
-        // $alunos = Funcao::find(3)->users;
         $aluno = Funcao::where('nome', 'aluno')->get();
         foreach ($aluno as $a) {
             $alunos = Funcao::find($a->id)->users;
         }
+        $disciplinas = Disciplina::all();
 
-        return view('pontuacao.form', compact('alunos', 'fases'));
+        return view('pontuacao.form', compact('alunos', 'fases', 'disciplinas'));
     }
 
     /**
@@ -48,10 +51,13 @@ class PontuacaoController extends Controller
      */
     public function store(Request $request)
     {
+        //autorização
+        $this->authorize('create', Pontuacao::class);
         $request->validate([
             'ponto_obtido' => 'required',
             'fase_id' => 'required',
             'user_id' => 'required',
+            'disciplina_id' => 'required',
         ]);
 
         Pontuacao::create($request->all());
@@ -93,6 +99,8 @@ class PontuacaoController extends Controller
      */
     public function show(Pontuacao $pontuacao)
     {
+        //autorização
+        $this->authorize('view', $pontuacao);
         return view('pontuacao.show', compact('pontuacao'));
     }
 
@@ -104,13 +112,15 @@ class PontuacaoController extends Controller
      */
     public function edit(Pontuacao $pontuacao)
     {
+        //autorização
+        $this->authorize('update', $pontuacao);
         $fases = Fase::all();
-        // $alunos = Funcao::find(3)->users;
         $aluno = Funcao::where('nome', 'aluno')->get();
         foreach ($aluno as $a) {
             $alunos = Funcao::find($a->id)->users;
         }
-        return view('pontuacao.formEdit', compact('pontuacao', 'fases', 'alunos'));
+        $disciplinas = Disciplina::all();
+        return view('pontuacao.formEdit', compact('pontuacao', 'fases', 'alunos', 'disciplinas'));
     }
 
     /**
@@ -122,10 +132,13 @@ class PontuacaoController extends Controller
      */
     public function update(Request $request, Pontuacao $pontuacao)
     {
+        //autorização
+        $this->authorize('update', $pontuacao);
         $request->validate([
             'ponto_obtido' => 'required',
             'fase_id' => 'required',
             'user_id' => 'required',
+            'disciplina_id' => 'required',
         ]);
 
         $pontuacao->update($request->all());
@@ -154,6 +167,8 @@ class PontuacaoController extends Controller
      */
     public function destroy(Pontuacao $pontuacao)
     {
+        //autorização
+        $this->authorize('delete', $pontuacao);
         $pontuacao->delete();
 
         $pontuacaos = Pontuacao::where('user_id', $pontuacao->user_id)->sum('ponto_obtido');

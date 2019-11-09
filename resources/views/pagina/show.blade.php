@@ -5,7 +5,7 @@
 @section('content')
 <div class="card text-center">
     <div class="card-header">
-        <h2>Detalhando Pagina</h2>
+        <h2>Detalhando Página</h2>
     </div>
     <div class="card-body">
         <table class="table table-bordered">
@@ -28,8 +28,8 @@
                 <td>{{ $pagina->disciplina->nome }}</td>
                 <td>
                     <form action="{{ route('paginas.destroy',$pagina->id) }}" method="POST">
-                        <a class="btn btn-primary" href="{{ route('paginas.index') }}">
-                                <i class="fas fa-undo-alt"></i> Voltar
+                        <a class="btn btn-warning" href="{{ route('paginas.index') }}">
+                                <i class="fas fa-undo-alt"></i>
                         </a>
                         <a class="btn btn-primary" href="{{ route('paginas.edit',$pagina->id) }}" >
                             <i class="fas fa-pencil-alt"></i>

@@ -69,4 +69,31 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(Ranking::class);
     }
 
+    public function isAdmin(){
+        $funcaos = $this->funcaos;
+        foreach ($funcaos as $funcao) {
+            if ($funcao->nome == 'admin') {
+                return true;
+            }else{
+                return false;
+            }
+        }
+    }
+    public function isProfessor(){
+        $funcaos = $this->funcaos;
+        foreach ($funcaos as $funcao) {
+            if ($funcao->nome == 'professor') {
+                return true;
+            }
+        }
+    }
+    public function isAluno(){
+        $funcaos = $this->funcaos;
+        foreach ($funcaos as $funcao) {
+            if ($funcao->nome == 'aluno') {
+                return true;
+            }
+        }
+    }
+
 }

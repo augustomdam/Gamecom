@@ -20,6 +20,8 @@ class CreatePontuacaosTable extends Migration
             $table->foreign('fase_id')->references('id')->on('fases')->onDelete('cascade');
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->bigInteger('disciplina_id')->unsigned();
+            $table->foreign('disciplina_id')->references('id')->on('disciplinas')->onDelete('cascade');
             $table->timestamps();
         });
     }

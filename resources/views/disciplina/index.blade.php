@@ -8,18 +8,20 @@
 <div class="card text-center">
     <div class="card-header">
         <h2>Lista de Disciplinas</h2>
-            <div class="pull-right">
-                <a class="btn btn-warning" href="{{ route('disciplinas.create') }}">
+        <div class="pull-right">
+            @can('create', App\Disciplina::class)
+                <a class="btn btn-info" href="{{ route('disciplinas.create') }}">
                     <i class="fas fa-plus-circle"></i> Criar Disciplina
                 </a>
-            </div>
+            @endcan
+        </div>
 
     </div>
     <div class="card-body">
         @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-                <p>{{ $message }}</p>
-            </div>
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
         @endif
         <table class="table table-bordered">
             <tr>
@@ -31,6 +33,7 @@
                 <th width="280px">Ações</th>
             </tr>
             @foreach ($disciplinas as $disciplina)
+            @can('view', $disciplina)
             <tr>
                 <td>{{ $disciplina->id }}</td>
                 <td>{{ $disciplina->nome }}</td>
@@ -39,22 +42,23 @@
                 <td>{{ $disciplina->user->name }}</td>
                 <td>
                     <form action="{{ route('disciplinas.destroy',$disciplina->id) }}" method="POST">
-                        <a class="btn btn-info" href="{{ route('disciplinas.show',$disciplina->id) }}">
+                        <a class="btn btn-warning" href="{{ route('disciplinas.show',$disciplina->id) }}">
                             <i class="fas fa-eye"></i>
                         </a>
-
-                        <a class="btn btn-primary" href="{{ route('disciplinas.edit',$disciplina->id) }}" >
+                        <a class="btn btn-primary" href="{{ route('disciplinas.edit',$disciplina->id) }}">
                             <i class="fas fa-pencil-alt"></i>
                         </a>
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger " onclick="return confirm('Deseja mesmo Excluir a Disciplina?');">
+                        <button type="submit" class="btn btn-danger "
+                            onclick="return confirm('Deseja mesmo Excluir a Disciplina?');">
                             <i class="fas fa-trash"></i>
                         </button>
 
                     </form>
                 </td>
             </tr>
+            @endcan
 
             @endforeach
         </table>

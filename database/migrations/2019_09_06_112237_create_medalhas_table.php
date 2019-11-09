@@ -18,6 +18,8 @@ class CreateMedalhasTable extends Migration
             $table->string('nome');
             $table->string('imagem');
             $table->text('descricao');
+            $table->bigInteger('disciplina_id')->unsigned();
+            $table->foreign('disciplina_id')->references('id')->on('disciplinas')->onDelete('cascade');
             $table->timestamps();
         });
     }

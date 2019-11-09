@@ -75,24 +75,6 @@ class UserController extends Controller
             ->with('success', 'Função atribuída com Sucesso!');
     }
 
-    public function atribuirPermissao(Funcao $funcao)
-    {
-        $permissaos = Permissao::all();
-        return view('user.atribuirPermissao', compact('funcao', 'permissaos'));
-    }
-
-    public function atribuiPermissao(Request $request)
-    {
-        $request->validate([
-            'permissao_id' => 'required',
-        ]);
-        DB::table('funcaos_permissaos')->insert([
-            'funcao_id' => $request['funcao_id'],
-            'permissao_id' => $request['permissao_id'],
-        ]);
-        return redirect()->route('funcaos.index')
-            ->with('success', 'Permissao Vinculada com Sucesso!');
-    }
     public function deleteFuncao(User $user, Funcao $funcao)
     {
 
@@ -100,18 +82,7 @@ class UserController extends Controller
                         ->where('user_id', $user->id)
                         ->where( 'funcao_id', $funcao->id)
                         ->delete();
-        // dd($user_funcao);
         return redirect()->route('user.list')
             ->with('success', 'Função desvinculada com Sucesso!');
-    }
-
-    public function deletePermissao(Funcao $funcao, Permissao $permissao)
-    {
-        $user_funcao = DB::table('funcaos_permissaos')
-                        ->where('funcao_id', $funcao->id)
-                        ->where( 'permissao_id', $permissao->id)
-                        ->delete();
-        return redirect()->route('funcaos.index')
-            ->with('success', 'Permissão desvinculada com Sucesso!');
     }
 }

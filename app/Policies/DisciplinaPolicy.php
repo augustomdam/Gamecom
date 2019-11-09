@@ -10,17 +10,13 @@ class DisciplinaPolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * Determine whether the user can view any disciplinas.
-     *
-     * @param  \App\User  $user
-     * @return mixed
-     */
-    public function viewAny(User $user)
+    public function before(User $user)
     {
-        //
-    }
+        if ($user->isAdmin()) {
+            return true;
+        }
 
+    }
     /**
      * Determine whether the user can view the disciplina.
      *
@@ -30,7 +26,7 @@ class DisciplinaPolicy
      */
     public function view(User $user, Disciplina $disciplina)
     {
-        //
+        return $user->id == $disciplina->user_id;
     }
 
     /**
@@ -41,7 +37,9 @@ class DisciplinaPolicy
      */
     public function create(User $user)
     {
-        //
+        if ($user->isProfessor()) {
+            return true;
+        }
     }
 
     /**
@@ -53,7 +51,7 @@ class DisciplinaPolicy
      */
     public function update(User $user, Disciplina $disciplina)
     {
-        //
+        return $user->id == $disciplina->user_id;
     }
 
     /**
@@ -65,30 +63,6 @@ class DisciplinaPolicy
      */
     public function delete(User $user, Disciplina $disciplina)
     {
-        //
-    }
-
-    /**
-     * Determine whether the user can restore the disciplina.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Disciplina  $disciplina
-     * @return mixed
-     */
-    public function restore(User $user, Disciplina $disciplina)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can permanently delete the disciplina.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Disciplina  $disciplina
-     * @return mixed
-     */
-    public function forceDelete(User $user, Disciplina $disciplina)
-    {
-        //
+        return $user->id == $disciplina->user_id;
     }
 }

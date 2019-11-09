@@ -10,6 +10,7 @@ class Pontuacao extends Model
         'ponto_obtido',
         'fase_id',
         'user_id',
+        'disciplina_id',
     ];
 
     public function user(){
@@ -18,5 +19,9 @@ class Pontuacao extends Model
 
     public function fase(){
         return $this->belongsTo(Fase::class);
+    }
+
+    public function disciplina(){
+        return $this->belongsTo(Disciplina::class);
     }
 }

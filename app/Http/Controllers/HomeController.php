@@ -43,12 +43,10 @@ class HomeController extends Controller
         $gamificacaos = Gamificacao::all()->count();
         $pontuacaos = Pontuacao::all()->count();
         $funcaos = Funcao::all()->count();
-        $permissaos = Permissao::all()->count();
         return view('home', compact(
             'disciplinas', 'paginas', 'users',
             'medalhas', 'equipes','fases',
-            'gamificacaos', 'pontuacaos', 'funcaos',
-            'permissaos'
+            'gamificacaos', 'pontuacaos', 'funcaos'
         ));
     }
 }

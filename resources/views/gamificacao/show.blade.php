@@ -31,7 +31,7 @@
                 <td>
                     <form action="{{ route('gamificacaos.destroy',$gamificacao->id) }}" method="POST">
 
-                        <a class="btn btn-info" href="{{ route('gamificacaos.index',$gamificacao->id) }}">
+                        <a class="btn btn-warning" href="{{ route('gamificacaos.index',$gamificacao->id) }}">
                             <i class="fas fa-undo"></i>
                         </a>
                         <a class="btn btn-primary" href="{{ route('gamificacaos.edit',$gamificacao->id) }}" >

@@ -26,17 +26,21 @@
                     <td>
                     <form action="{{ route('matriculas.destroy',$matricula->id) }}" method="POST">
 
-                        <a class="btn btn-info" href="{{ route('matriculas.index') }}">
+                        <a class="btn btn-warning" href="{{ route('matriculas.index') }}">
                             <i class="fas fa-undo"></i>
                         </a>
+                        @can('update', $matricula)
                         <a class="btn btn-primary" href="{{ route('matriculas.edit',$matricula->id) }}" >
                             <i class="fas fa-pencil-alt"></i>
                         </a>
+                        @endcan
                         @csrf
                         @method('DELETE')
+                        @can('delete', $matricula)
                         <button type="submit" class="btn btn-danger " onclick="return confirm('Deseja mesmo Excluir a Matricula?');">
                             <i class="fas fa-trash"></i>
                         </button>
+                        @endcan
                     </form>
                 </td>
             </tr>

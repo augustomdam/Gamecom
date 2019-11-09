@@ -26,6 +26,8 @@ class EquipeController extends Controller
      */
     public function create()
     {
+        //autorização
+        $this->authorize('create', Equipe::class);
         $disciplinas = Disciplina::all();
         return view('equipe.form', compact('disciplinas'));
     }
@@ -38,6 +40,8 @@ class EquipeController extends Controller
      */
     public function store(Request $request)
     {
+        //autorização
+        $this->authorize('create', Equipe::class);
         $request->validate([
             'nome' => 'required',
             'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
@@ -63,6 +67,8 @@ class EquipeController extends Controller
      */
     public function show(Equipe $equipe)
     {
+        //autorização
+        $this->authorize('view', $equipe);
         return view('equipe.show', compact('equipe'));
     }
 
@@ -74,6 +80,8 @@ class EquipeController extends Controller
      */
     public function edit(Equipe $equipe)
     {
+        //autorização
+        $this->authorize('update', $equipe);
         $disciplinas = Disciplina::all();
         return view('equipe.formEdit', compact('equipe', 'disciplinas'));
     }
@@ -87,6 +95,8 @@ class EquipeController extends Controller
      */
     public function update(Request $request, Equipe $equipe)
     {
+        //autorização
+        $this->authorize('update', $equipe);
         $request->validate([
             'nome' => 'required',
             'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
@@ -103,7 +113,6 @@ class EquipeController extends Controller
         return redirect()->route('equipes.index')
         ->with('success','Equipe Atualizada com Sucesso!');
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -112,6 +121,8 @@ class EquipeController extends Controller
      */
     public function destroy(Equipe $equipe)
     {
+        //autorização
+        $this->authorize('delete', $equipe);
         $equipe->delete();
         return redirect()->route('equipes.index')
         ->with('success','Equipe Excluida com Sucesso!');

@@ -27,6 +27,8 @@ class FaseController extends Controller
      */
     public function create()
     {
+        //autorização
+        $this->authorize('create', Fase::class);
         $disciplinas = Disciplina::all();
         $medalhas = Medalha::all();
         return view('fase.form', compact('disciplinas', 'medalhas'));
@@ -39,6 +41,8 @@ class FaseController extends Controller
      */
     public function store(Request $request)
     {
+        //autorização
+        $this->authorize('create', Fase::class);
         $request->validate([
             'ordem' => 'required',
             'tipo' => 'required',
@@ -81,6 +85,8 @@ class FaseController extends Controller
      */
     public function show(Fase $fase)
     {
+        //autorização
+        $this->authorize('view', $fase);
         return view('fase.show', compact('fase'));
     }
 
@@ -92,6 +98,8 @@ class FaseController extends Controller
      */
     public function edit(Fase $fase)
     {
+        //autorização
+        $this->authorize('update', $fase);
         $disciplinas = Disciplina::all();
         $medalhas = Medalha::all();
         return view('fase.formEdit', compact('fase', 'medalhas', 'disciplinas'));
@@ -106,6 +114,8 @@ class FaseController extends Controller
      */
     public function update(Request $request, Fase $fase)
     {
+        //autorização
+        $this->authorize('update', $fase);
         $request->validate([
             'ordem' => 'required',
             'tipo' => 'required',
@@ -148,6 +158,8 @@ class FaseController extends Controller
      */
     public function destroy(Fase $fase)
     {
+        //autorização
+        $this->authorize('delete', $fase);
         $fase->delete();
         return redirect()->route('fases.index')
         ->with('success','Fase excluida com Sucesso!');

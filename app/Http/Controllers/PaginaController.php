@@ -34,6 +34,8 @@ class PaginaController extends Controller
      */
     public function create()
     {
+        //autorização
+        $this->authorize('create', Pagina::class);
         $disciplinas = Disciplina::all();
         return view('pagina.form', compact('disciplinas'));
     }
@@ -46,6 +48,8 @@ class PaginaController extends Controller
      */
     public function store(Request $request)
     {
+        //autorização
+        $this->authorize('create', Pagina::class);
         $request->validate([
             'titulo' => 'required',
             'banner' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
@@ -54,7 +58,7 @@ class PaginaController extends Controller
             'disciplina_id' => 'required|unique:paginas,disciplina_id',
         ]);
 
-        $imageName = time().'.'.request()->banner->getClientOriginalExtension();
+        $imageName = time() . '.' . request()->banner->getClientOriginalExtension();
 
         Pagina::create([
             'titulo' => $request['titulo'],
@@ -65,7 +69,7 @@ class PaginaController extends Controller
         ]);
 
         return redirect()->route('paginas.index')
-                        ->with('success','Pagina criada com Sucesso!');
+            ->with('success', 'Pagina criada com Sucesso!');
     }
 
     /**
@@ -76,7 +80,9 @@ class PaginaController extends Controller
      */
     public function show(Pagina $pagina)
     {
-        return view('pagina.show',compact('pagina'));
+        //autorização
+        $this->authorize('view', $pagina);
+        return view('pagina.show', compact('pagina'));
     }
 
     /**
@@ -87,8 +93,10 @@ class PaginaController extends Controller
      */
     public function edit(Pagina $pagina)
     {
+        //autorização
+        $this->authorize('update', $pagina);
         $disciplinas = Disciplina::all();
-        return view('pagina.formEdit',compact('pagina'));
+        return view('pagina.formEdit', compact('pagina'));
     }
 
     /**
@@ -100,6 +108,7 @@ class PaginaController extends Controller
      */
     public function update(Request $request, Pagina $pagina)
     {
+        $this->authorize('update', $pagina);
         $request->validate([
             'titulo' => 'required',
             'banner' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
@@ -108,7 +117,7 @@ class PaginaController extends Controller
             'disciplina_id' => 'required',
         ]);
 
-        $imageName = time().'.'.request()->banner->getClientOriginalExtension();
+        $imageName = time() . '.' . request()->banner->getClientOriginalExtension();
 
         $pagina->update([
             'titulo' => $request['titulo'],
@@ -118,7 +127,7 @@ class PaginaController extends Controller
             'disciplina_id' => $request['disciplina_id']
         ]);
         return redirect()->route('paginas.index')
-                        ->with('success','Pagina atualizada com Sucesso!');
+            ->with('success', 'Pagina atualizada com Sucesso!');
     }
 
     /**
@@ -129,9 +138,10 @@ class PaginaController extends Controller
      */
     public function destroy(Pagina $pagina)
     {
+        //autorização
+        $this->authorize('delete', $pagina);
         $pagina->delete();
         return redirect()->route('paginas.index')
-                        ->with('success','Pagina excluida com Sucesso!');
-
+            ->with('success', 'Pagina excluida com Sucesso!');
     }
 }

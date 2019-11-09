@@ -55,7 +55,7 @@
                                 </div>
                                 <br>
                                 <button type="submit" class="btn btn-success">
-                                    <i class="fas fa-sync"></i> Salvar
+                                    <i class="fas fa-save"></i> Salvar
                                 </button>
                             </div>
                         </div>

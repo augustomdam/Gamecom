@@ -12,6 +12,7 @@ class HomeController extends Controller
 {
     public function index(){
         $disciplinas = Disciplina::all();
+
         return view('public.home', compact('disciplinas'));
     }
 

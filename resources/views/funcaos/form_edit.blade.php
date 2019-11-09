@@ -32,11 +32,11 @@
                         @csrf
                         @method('PUT')
                         <div class="row">
-                            {{-- <div class="col-md-3"></div> --}}
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <strong>Funçao:</strong>
-                                <input type="text" name="nome" class="form-control" placeholder="Função" value="{{$funcao->nome}}">
+                                    <input type="text" name="nome" class="form-control" placeholder="Função"
+                                        value="{{$funcao->nome}}">
                                 </div>
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fas fa-save"></i> Salvar

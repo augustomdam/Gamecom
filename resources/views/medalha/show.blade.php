@@ -5,7 +5,7 @@
 @section('content')
 <div class="card text-center">
     <div class="card-header">
-        <h2>Detalhando a Medalha</h2>
+        <h2>Detalhando Medalha</h2>
     </div>
     <div class="card-body">
         <table class="table table-bordered">
@@ -14,6 +14,7 @@
                 <th>Nome</th>
                 <th>Imagem</th>
                 <th>Descricao</th>
+                <th>Disciplina</th>
                 <th colspan="3">Ações</th>
             </tr>
             <tr>
@@ -22,10 +23,11 @@
                 <td><img src="{{ asset('storage/'. $medalha->imagem) }}"
                     alt="{{$medalha->imagem}}" width="100px" height="50px"></td>
                 <td>{{ $medalha->descricao }}</td>
+                <td>{{ $medalha->disciplina->nome }}</td>
                 <td>
                     <form action="{{ route('medalhas.destroy',$medalha->id) }}" method="POST">
 
-                        <a class="btn btn-info" href="{{ route('medalhas.index',$medalha->id) }}">
+                        <a class="btn btn-warning" href="{{ route('medalhas.index',$medalha->id) }}">
                             <i class="fas fa-undo"></i>
                         </a>
                         <a class="btn btn-primary" href="{{ route('medalhas.edit',$medalha->id) }}" >

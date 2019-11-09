@@ -15,14 +15,7 @@ class FuncaosController extends Controller
     public function index()
     {
         $funcaos = Funcao::paginate(15);
-
-        foreach ($funcaos as $funcao) {
-            $permissaos = $funcao->permissaos();
-
-            # code...
-        }
-    //    dd($permissaos);
-        return view('funcaos.index', compact('funcaos','permissaos'));
+        return view('funcaos.index', compact('funcaos'));
     }
 
     /**
@@ -32,6 +25,8 @@ class FuncaosController extends Controller
      */
     public function create()
     {
+        //autorização
+        $this->authorize('create', Funcao::class);
         return view('funcaos.form');
     }
 
@@ -43,6 +38,8 @@ class FuncaosController extends Controller
      */
     public function store(Request $request)
     {
+        //autorização
+        $this->authorize('create', Funcao::class);
         $request->validate([
             'nome' => 'required'
         ]);
@@ -61,6 +58,8 @@ class FuncaosController extends Controller
      */
     public function show(Funcao $funcao)
     {
+        //autorização
+        $this->authorize('view', $funcao);
         return view('funcaos.show',compact('funcao'));
     }
 
@@ -72,6 +71,8 @@ class FuncaosController extends Controller
      */
     public function edit(Funcao $funcao)
     {
+        //autorização
+        $this->authorize('view', $funcao);
         return view('funcaos.form_edit',compact('funcao'));
     }
 
@@ -84,6 +85,8 @@ class FuncaosController extends Controller
      */
     public function update(Request $request, Funcao $funcao)
     {
+        //autorização
+        $this->authorize('view', $funcao);
         $request->validate([
             'nome' => 'required',
         ]);
@@ -101,6 +104,8 @@ class FuncaosController extends Controller
      */
     public function destroy(Funcao $funcao)
     {
+        //autorização
+        $this->authorize('view', $funcao);
         $funcao->delete();
 
         return redirect()->route('funcaos.index')

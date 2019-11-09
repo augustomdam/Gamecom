@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Curso;
 use App\Disciplina;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class DisciplinaController extends Controller
 {
@@ -23,9 +25,8 @@ class DisciplinaController extends Controller
      */
     public function index()
     {
-           $disciplinas = Disciplina::paginate(10);
-           return view('disciplina.index', compact('disciplinas'));
-
+        $disciplinas = Disciplina::paginate(10);
+        return view('disciplina.index', compact('disciplinas'));
     }
 
 
@@ -36,6 +37,7 @@ class DisciplinaController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Disciplina::class);
         return view('disciplina.form');
     }
 
@@ -54,10 +56,12 @@ class DisciplinaController extends Controller
             'user_id' => 'required',
         ]);
 
+        $this->authorize('create', Disciplina::class);
+
         Disciplina::create($request->all());
 
         return redirect()->route('disciplinas.index')
-                        ->with('success','Disciplina criada com Sucesso!');
+            ->with('success', 'Disciplina criada com Sucesso!');
     }
 
     /**
@@ -68,7 +72,7 @@ class DisciplinaController extends Controller
      */
     public function show(Disciplina $disciplina)
     {
-        return view('disciplina.show',compact('disciplina'));
+        return view('disciplina.show', compact('disciplina'));
     }
 
     /**
@@ -79,7 +83,8 @@ class DisciplinaController extends Controller
      */
     public function edit(Disciplina $disciplina)
     {
-        return view('disciplina.formEdit',compact('disciplina'));
+        $this->authorize('update', $disciplina);
+        return view('disciplina.formEdit', compact('disciplina'));
     }
 
     /**
@@ -97,10 +102,12 @@ class DisciplinaController extends Controller
             'semestre' => 'required',
             'user_id' => 'required',
         ]);
+
+        $this->authorize('update', $disciplina);
         $disciplina->update($request->all());
 
         return redirect()->route('disciplinas.index')
-                        ->with('success','Disciplina atualizada com Sucesso!');
+            ->with('success', 'Disciplina atualizada com Sucesso!');
     }
 
     /**
@@ -111,9 +118,10 @@ class DisciplinaController extends Controller
      */
     public function destroy(Disciplina $disciplina)
     {
+        $this->authorize('delete', $disciplina);
         $disciplina->delete();
 
         return redirect()->route('disciplinas.index')
-                        ->with('success','Disciplina excluida com Sucesso!');
+            ->with('success', 'Disciplina excluida com Sucesso!');
     }
 }

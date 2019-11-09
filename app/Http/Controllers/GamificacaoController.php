@@ -16,7 +16,6 @@ class GamificacaoController extends Controller
     public function index()
     {
         $gamificacaos = Gamificacao::paginate(10);;
-
         return view('gamificacao.index', compact('gamificacaos'));
     }
 
@@ -27,6 +26,8 @@ class GamificacaoController extends Controller
      */
     public function create()
     {
+        //autorização
+        $this->authorize('create', Gamificacao::class);
         $disciplinas = Disciplina::all();
         return view('gamificacao.form', compact('disciplinas'));
     }
@@ -39,6 +40,8 @@ class GamificacaoController extends Controller
      */
     public function store(Request $request)
     {
+        //autorização
+        $this->authorize('create', Gamificacao::class);
         $request->validate([
             'banner' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
             'desc_fases_pontos' => 'required',
@@ -71,6 +74,8 @@ class GamificacaoController extends Controller
      */
     public function show(Gamificacao $gamificacao)
     {
+        //autorização
+        $this->authorize('view', $gamificacao);
         return view('gamificacao.show',compact('gamificacao'));
     }
 
@@ -82,6 +87,8 @@ class GamificacaoController extends Controller
      */
     public function edit(Gamificacao $gamificacao)
     {
+        //autorização
+        $this->authorize('update', $gamificacao);
         $disciplinas = Disciplina::all();
         return view('gamificacao.formEdit', compact('gamificacao','disciplinas'));
     }
@@ -95,6 +102,8 @@ class GamificacaoController extends Controller
      */
     public function update(Request $request, Gamificacao $gamificacao)
     {
+        //autorização
+        $this->authorize('update', $gamificacao);
         $request->validate([
             'banner' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
             'desc_fases_pontos' => 'required',
@@ -127,6 +136,8 @@ class GamificacaoController extends Controller
      */
     public function destroy(Gamificacao $gamificacao)
     {
+        //autorização
+        $this->authorize('update', $gamificacao);
         $gamificacao->delete();
         return redirect()->route('gamificacaos.index')
                         ->with('success','Gamificação Excluida com Sucesso!');

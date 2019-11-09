@@ -24,9 +24,21 @@
                 <td>{{ $disciplina->semestre }}</td>
                 <td>{{ $disciplina->user->name }}</td>
                 <td>
-                    <a class="btn btn-primary" href="{{ route('disciplinas.index') }}">
-                            <i class="fas fa-undo-alt"></i> Voltar
-                    </a>
+                    <form action="{{ route('disciplinas.destroy',$disciplina->id) }}" method="POST">
+                        <a class="btn btn-warning" href="{{ route('disciplinas.index') }}">
+                            <i class="fas fa-undo-alt"></i>
+                        </a>
+                        <a class="btn btn-primary" href="{{ route('disciplinas.edit',$disciplina->id) }}">
+                            <i class="fas fa-pencil-alt"></i>
+                        </a>
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger "
+                            onclick="return confirm('Deseja mesmo Excluir a Disciplina?');">
+                            <i class="fas fa-trash"></i>
+                        </button>
+
+                    </form>
                 </td>
             </tr>
         </table>

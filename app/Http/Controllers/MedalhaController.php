@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Medalha;
+use App\Disciplina;
 use Illuminate\Http\Request;
 
 class MedalhaController extends Controller
@@ -25,7 +26,10 @@ class MedalhaController extends Controller
      */
     public function create()
     {
-        return view('medalha.form');
+        //autorização
+        $this->authorize('create', Medalha::class);
+        $disciplinas = Disciplina::all();
+        return view('medalha.form', compact('disciplinas'));
     }
 
     /**
@@ -36,10 +40,13 @@ class MedalhaController extends Controller
      */
     public function store(Request $request)
     {
+        //autorização
+        $this->authorize('create', Medalha::class);
         $request->validate([
             'nome' => 'required',
             'imagem' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
             'descricao' => 'required',
+            'disciplina_id' => 'required',
         ]);
 
         $imageName = time().'.'.request()->imagem->getClientOriginalExtension();
@@ -48,6 +55,7 @@ class MedalhaController extends Controller
             'nome' => $request['nome'],
             'imagem' => $request['imagem']->storeAs('imagem', $imageName),
             'descricao' => $request['descricao'],
+            'disciplina_id' => $request['disciplina_id'],
         ]);
 
         return redirect()->route('medalhas.index')
@@ -62,6 +70,7 @@ class MedalhaController extends Controller
      */
     public function show(Medalha $medalha)
     {
+        $this->authorize('view', $medalha);
         return view('medalha.show', compact('medalha'));
     }
 
@@ -73,7 +82,9 @@ class MedalhaController extends Controller
      */
     public function edit(Medalha $medalha)
     {
-        return view('medalha.formEdit', compact('medalha'));
+        $this->authorize('update', $medalha);
+        $disciplinas = Disciplina::all();
+        return view('medalha.formEdit', compact('medalha', 'disciplinas'));
     }
 
     /**
@@ -85,10 +96,12 @@ class MedalhaController extends Controller
      */
     public function update(Request $request, Medalha $medalha)
     {
+        $this->authorize('update', $medalha);
         $request->validate([
             'nome' => 'required',
             'imagem' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
             'descricao' => 'required',
+            'disciplina_id' => 'required',
         ]);
 
         $imageName = time().'.'.request()->imagem->getClientOriginalExtension();
@@ -97,6 +110,7 @@ class MedalhaController extends Controller
             'nome' => $request['nome'],
             'imagem' => $request['imagem']->storeAs('imagem', $imageName),
             'descricao' => $request['descricao'],
+            'disciplina_id' => $request['disciplina_id'],
         ]);
 
         return redirect()->route('medalhas.index')
@@ -111,6 +125,7 @@ class MedalhaController extends Controller
      */
     public function destroy(Medalha $medalha)
     {
+        $this->authorize('delete', $medalha);
         $medalha->delete();
         return redirect()->route('medalhas.index')
         ->with('success','Medalha excluida com Sucesso!');

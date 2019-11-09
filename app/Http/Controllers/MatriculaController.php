@@ -28,7 +28,8 @@ class MatriculaController extends Controller
      */
     public function create()
     {
-        // $alunos = Funcao::find(3)->users;
+        //autorização
+        $this->authorize('create', Matricula::class);
         $aluno = Funcao::where('nome', 'aluno')->get();
         foreach ($aluno as $a) {
             $alunos = Funcao::find($a->id)->users;
@@ -47,6 +48,8 @@ class MatriculaController extends Controller
      */
     public function store(Request $request)
     {
+        //autorização
+        $this->authorize('create', Matricula::class);
         $request->validate([
             'disciplina_id' => 'required',
             'user_id' => 'required',
@@ -67,6 +70,8 @@ class MatriculaController extends Controller
      */
     public function show(Matricula $matricula)
     {
+        //autorização
+        $this->authorize('view', $matricula);
         return view('matricula.show', compact('matricula'));
     }
 
@@ -78,7 +83,8 @@ class MatriculaController extends Controller
      */
     public function edit(Matricula $matricula)
     {
-        // $alunos = Funcao::find(3)->users;
+        //autorização
+        $this->authorize('update', $matricula);
         $aluno = Funcao::where('nome', 'aluno')->get();
         foreach ($aluno as $a) {
             $alunos = Funcao::find($a->id)->users;
@@ -98,6 +104,8 @@ class MatriculaController extends Controller
      */
     public function update(Request $request, Matricula $matricula)
     {
+        //autorização
+        $this->authorize('update', $matricula);
         $request->validate([
             'disciplina_id' => 'required',
             'user_id' => 'required',
@@ -118,6 +126,8 @@ class MatriculaController extends Controller
      */
     public function destroy(Matricula $matricula)
     {
+        //autorização
+        $this->authorize('delete', $matricula);
         $matricula->delete();
         return redirect()->route('matriculas.index')
         ->with('success','Matricula excluida com Sucesso!');

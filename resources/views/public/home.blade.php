@@ -10,6 +10,7 @@
         <div class="col-md-2"></div>
         <div class="col-md-8 mb-3">
             <div class="card">
+                {{-- {{dd( $disciplina->pagina->banner)}} --}}
                 <img src="{{ asset('storage/'. $disciplina->pagina->banner) }}" class="card-img-top">
                 <div class="card-body">
                     <h3><i class="fas fa-address-book"></i> {{$disciplina->nome}}</h3>

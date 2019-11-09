@@ -32,11 +32,9 @@ Route::group(['middleware' => ['verified']], function () {
     //crud pontuacaos
     Route::resource('pontuacaos', 'PontuacaoController');
     //crud funções
-    Route::resource('funcaos', 'FuncaosController');
-    //crud permissões
-    Route::resource('permissaos', 'PermissaoController');
+    Route::resource('funcaos', 'FuncaosController')->middleware('can:create, App\Funcao');
     //users
-    Route::get('users/list', 'UserController@list')->name('user.list');
+    Route::get('users/list', 'UserController@list')->name('user.list')->middleware('can:view, user');
     Route::get('user/profile', 'UserController@profile')->name('user.profile');
     Route::get('user/edit/{user}', 'UserController@profileEdit')->name('user.edit');
     Route::put('user/{user}', 'UserController@profileUpdate')->name('user.update');
@@ -44,9 +42,5 @@ Route::group(['middleware' => ['verified']], function () {
     Route::get('funcao/user/{user}', 'UserController@atribuirFuncao')->name('user.atribuir');
     Route::post('funcao/user', 'UserController@atribuiFuncao')->name('user.atribuiFuncao');
     Route::delete('user/{user}/funcao/{funcao}', 'UserController@deleteFuncao')->name('user.deleteFuncao');
-    //funcaos-permissoes
-    Route::get('funcao/{funcao}', 'UserController@atribuirPermissao')->name('permissao.atribuir');
-    Route::post('funcao/permissao', 'UserController@atribuiPermissao')->name('funcao.atribuiPermissao');
-    Route::delete('funcao/{funcao}/permissao/{permissao}', 'UserController@deletePermissao')->name('funcao.deletePermissao');
 
 });

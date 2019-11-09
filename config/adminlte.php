@@ -121,7 +121,7 @@ return [
             'text'        => 'Disciplinas',
             'url'         => '/disciplinas',
             'icon'        => 'fas fa-address-book',
-            //'label'       => 4,
+            'can' => 'ocultaMenuDisciplinas',
             'label_color' => 'success',
             'submenu' =>[
                 [
@@ -167,11 +167,6 @@ return [
             'label_color' => 'yellow',
             'submenu' =>[
                 [
-                    'text' => 'Equipes',
-                    'url'  => '/equipes',
-                    'icon'        => 'fas fa-users',
-                ],
-                [
                     'text' => 'Matriculas',
                     'url'  => '/matriculas',
                     'icon'        => 'fas fa-business-time',
@@ -183,18 +178,13 @@ return [
                 ],
             ],
         ],
-        // [
-        //     'text'        => 'disciplinas',
-        //     'url'         => '/disciplinas',
-        //     'icon'        => 'far fa-file',
-        //     //'label'       => 4,
-        //     'label_color' => 'success',
-        // ],
+
         ['header' => 'Configurações de Usuários'],
         [
             'text'        => 'Usuários',
             'icon'        => 'fas fa-users',
             'label_color' => 'yellow',
+            'can'       => 'ocultaMenuUsuarios',
             'submenu' =>[
                 [
                     'text' => 'Lista de Usuários',
@@ -204,13 +194,9 @@ return [
                 [
                     'text' => 'Funções',
                     'url'  => '/funcaos',
-                    'icon'        => 'fas fa-user-plus',
-                ],
-                [
-                    'text' => 'Permissões',
-                    'url'  => '/permissaos',
                     'icon'        => 'fas fa-user-shield',
                 ],
+
             ],
         ],
         ['header' => 'account_settings'],
@@ -219,12 +205,6 @@ return [
             'url'  => 'user/profile',
             'icon' => 'fas fa-fw fa-user',
         ],
-        // [
-        //     'text' => 'change_password',
-        //     'url' => route('user.edit', $user),
-        //     'icon' => 'fas fa-fw fa-lock',
-        // ],
-
         /*['header' => 'labels'],
         [
             'text'       => 'important',

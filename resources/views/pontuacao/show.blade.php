@@ -14,6 +14,7 @@
                     <th>Pontos Obtido</th>
                     <th>Fase</th>
                     <th>Aluno</th>
+                    <th>Disciplina</th>
                     <th>Data do Lançamento</th>
                     <th colspan="3">Ações</th>
                 </tr>
@@ -22,21 +23,25 @@
                     <td>{{ $pontuacao->ponto_obtido }}</td>
                     <td>{{ $pontuacao->fase->nomefase }}</td>
                     <td>{{ $pontuacao->user->name }}</td>
+                    <td>{{ $pontuacao->disciplina->nome }}</td>
                     <td>{{ \Carbon\Carbon::parse($pontuacao->created_at)->format('d/m/Y') }}</td>
                     <td>
                     <form action="{{ route('pontuacaos.destroy',$pontuacao->id) }}" method="POST">
-
-                        <a class="btn btn-info" href="{{ route('pontuacaos.index') }}">
+                        <a class="btn btn-warning" href="{{ route('pontuacaos.index') }}">
                             <i class="fas fa-undo"></i>
                         </a>
-                        <a class="btn btn-primary" href="{{ route('pontuacaos.edit',$pontuacao->id) }}" >
-                            <i class="fas fa-pencil-alt"></i>
-                        </a>
+                        @can('update', $pontuacao)
+                            <a class="btn btn-primary" href="{{ route('pontuacaos.edit',$pontuacao->id) }}" >
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>
+                        @endcan
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger " onclick="return confirm('Deseja mesmo Excluir a Pontuação?');">
-                            <i class="fas fa-trash"></i>
-                        </button>
+                        @can('delete', $pontuacao)
+                            <button type="submit" class="btn btn-danger " onclick="return confirm('Deseja mesmo Excluir a Pontuação?');">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        @endcan
                     </form>
                 </td>
             </tr>

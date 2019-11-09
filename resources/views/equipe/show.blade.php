@@ -25,10 +25,10 @@
                 <td>
                     <form action="{{ route('equipes.destroy',$equipe->id) }}" method="POST">
 
-                        <a class="btn btn-info" href="{{ route('equipes.index') }}">
+                        <a class="btn btn-warning" href="{{ route('equipes.index') }}">
                             <i class="fas fa-undo"></i>
                         </a>
-                        <a class="btn btn-primary" href="{{ route('medalhas.edit',$equipe->id) }}" >
+                        <a class="btn btn-primary" href="{{ route('equipes.edit',$equipe->id) }}" >
                             <i class="fas fa-pencil-alt"></i>
                         </a>
                         @csrf

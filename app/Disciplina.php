@@ -41,4 +41,14 @@ class Disciplina extends Model
         return $this->hasOne(Ranking::class);
     }
 
+    public function medalhas()
+    {
+        return $this->hasMany(Medalha::class);
+    }
+
+    public function pontuacaos()
+    {
+        return $this->hasMany(Pontuacao::class);
+    }
+
 }

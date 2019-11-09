@@ -6,18 +6,20 @@
 <div class="card text-center">
     <div class="card-header">
         <h2>Lista de Gamificações</h2>
-            <div class="pull-right">
-                <a class="btn btn-warning" href="{{ route('gamificacaos.create') }}">
-                    <i class="fas fa-plus-circle"></i> Criar Gamificação
-                </a>
-            </div>
+        <div class="pull-right">
+            @can('create', App\Gamificacao::class)
+            <a class="btn btn-info" href="{{ route('gamificacaos.create') }}">
+                <i class="fas fa-plus-circle"></i> Criar Gamificação
+            </a>
+            @endcan
+        </div>
 
     </div>
     <div class="card-body">
         @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-                <p>{{ $message }}</p>
-            </div>
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
         @endif
         <table class="table table-bordered">
             <tr>
@@ -31,6 +33,7 @@
                 <th colspan="3">Ações</th>
             </tr>
             @foreach ($gamificacaos as $gamifica)
+            @can('view', $gamifica)
             <tr>
                 <td>{{ $gamifica->id }}</td>
                 <td>{{ $gamifica->banner }}</td>
@@ -41,23 +44,24 @@
                 <td>{{ $gamifica->disciplina->nome }}</td>
                 <td>
                     <form action="{{ route('gamificacaos.destroy',$gamifica->id) }}" method="POST">
-                        <a class="btn btn-info" href="{{ route('gamificacaos.show',$gamifica->id) }}">
+                        <a class="btn btn-warning" href="{{ route('gamificacaos.show',$gamifica->id) }}">
                             <i class="fas fa-eye"></i>
                         </a>
 
-                        <a class="btn btn-primary" href="{{ route('gamificacaos.edit',$gamifica->id) }}" >
+                        <a class="btn btn-primary" href="{{ route('gamificacaos.edit',$gamifica->id) }}">
                             <i class="fas fa-pencil-alt"></i>
                         </a>
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger " onclick="return confirm('Deseja mesmo Excluir a Gamificacao?');">
+                        <button type="submit" class="btn btn-danger "
+                            onclick="return confirm('Deseja mesmo Excluir a Gamificacao?');">
                             <i class="fas fa-trash"></i>
                         </button>
 
                     </form>
                 </td>
             </tr>
-
+            @endcan
             @endforeach
         </table>
         {{ $gamificacaos->links() }}
