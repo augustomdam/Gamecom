@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Disciplina;
 use App\User;
 use App\Medalha;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -24,10 +25,24 @@ class MedalhaPolicy
      */
     public function view(User $user, Medalha $medalha)
     {
-        $disciplinas = $user->disciplinas;
-        foreach ($disciplinas as $disciplina) {
-            $disciplina_id = $disciplina->id;
-            return $disciplina_id == $medalha->disciplina_id;
+        if ($user->isProfessor()) {
+            $disciplinas = $user->disciplinas;
+            foreach ($disciplinas as $disciplina) {
+                $disciplina_id = $disciplina->id;
+                return $disciplina_id == $medalha->disciplina_id;
+            }
+        } elseif ($user->isAluno()) {
+            $matriculas = $user->matriculas;
+
+            foreach ($matriculas as $matricula) {
+                $disciplinas[] = $matricula->disciplina->medalhas;
+
+                foreach ($disciplinas as $disciplina) {
+                    foreach ($disciplina as $d) {
+                        return $d->disciplina_id === $medalha->disciplina_id;
+                    }
+                }
+            }
         }
     }
 

@@ -17,7 +17,7 @@ class HomeController extends Controller
     }
 
     public function detalhe(Disciplina $disciplina){
-        $pagina = Pagina::find($disciplina->id);
+        $pagina = Pagina::findOrFail($disciplina->id);
         $fases = Fase::where('disciplina_id', $disciplina->id)->get();
         return view('public.disciplina', compact('disciplina','pagina','fases'));
     }

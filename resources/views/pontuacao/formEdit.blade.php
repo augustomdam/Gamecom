@@ -9,7 +9,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="text-center">
-                        <h2>Editar Pontuação</h2>
+                        <h2><i class="fas fa-chart-line "></i> Editar Pontuação</h2>
                     </div>
                     <div class="pull-right">
                         <a class="btn btn-info" href="{{ route('pontuacaos.index') }}">

@@ -5,7 +5,7 @@
 @section('content')
 <div class="card text-center">
     <div class="card-header">
-        <h2>Lista de Gamificações</h2>
+        <h2><i class="fas fa-gamepad "></i> Lista de Gamificações</h2>
         <div class="pull-right">
             @can('create', App\Gamificacao::class)
             <a class="btn btn-info" href="{{ route('gamificacaos.create') }}">

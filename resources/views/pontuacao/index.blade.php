@@ -5,7 +5,7 @@
 @section('content')
 <div class="card text-center">
     <div class="card-header">
-        <h2>Lista de Pontuações</h2>
+        <h2><i class="fas fa-chart-line "></i> Lista de Pontuações</h2>
         <div class="pull-right">
             @can('create', App\Pontuacao::class)
                 <a class="btn btn-info" href="{{ route('pontuacaos.create') }}">

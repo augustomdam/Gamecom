@@ -45,7 +45,7 @@
                 </div>
                 <div class="card-body">
                     <h4 class="text-center">
-                        <i class="fas fa-chart-area"></i> Ranking das Equipes <i class="fas fa-users"></i>
+                         Ranking das Equipes <i class="fas fa-users"></i>
                     </h4>
                     <table class="table table-striped">
                         <thead>
@@ -76,7 +76,7 @@
                     </table>
                     <br>
                     <h4 class="text-center">
-                        <i class="fas fa-chart-area"></i> Ranking dos Alunos <i class="fas fa-user-graduate"></i>
+                        Ranking dos Alunos <i class="fas fa-user-graduate"></i>
                     </h4>
                     <table class="table table-striped">
                         <thead>

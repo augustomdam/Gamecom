@@ -14,9 +14,9 @@
                 <img src="{{ asset('storage/'. $disciplina->pagina->banner) }}" class="card-img-top">
                 <div class="card-body">
                     <h3><i class="fas fa-address-book"></i> {{$disciplina->nome}}</h3>
-                    <p class="card-text"><i class="fa fa-graduation-cap"></i> {{$disciplina->curso}}</p>
-                    <p class="card-text"><i class="fa fa-level-up-alt"></i> {{$disciplina->semestre}}</p>
-                    <p class="card-text"> <i class="fas fa-chalkboard-teacher"></i> {{$disciplina->user->name}}</p>
+                    <p class="card-text">Curso: {{$disciplina->curso}} <i class="fa fa-graduation-cap"></i></p>
+                    <p class="card-text">Semestre: {{$disciplina->semestre}} <i class="fa fa-level-up-alt"></i></p>
+                    <p class="card-text"> Professor: {{$disciplina->user->name}} <i class="fas fa-chalkboard-teacher"></i></p>
                     <a class="btn btn-outline-info btn-lg" href="{{route('disciplina.detalhe',$disciplina->id) }}"
                         role="button">Ver Detalhes</a>
 

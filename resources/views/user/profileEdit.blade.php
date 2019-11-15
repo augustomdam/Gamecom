@@ -7,11 +7,11 @@
     <div class="card-header text-center">
         <div class="row">
             <div class="col-lg-12 margin-tb">
-                <div class="pull-left">
+                <div class="text-center">
                     <h2>Editar Perfil</h2>
                 </div>
                 <div class="pull-right">
-                    <a class="btn btn-primary" href="{{ route('user.profile') }}">
+                    <a class="btn btn-info" href="{{ route('user.profile') }}">
                         <i class="fas fa-undo-alt"></i> Voltar
                     </a>
                 </div>
@@ -35,7 +35,8 @@
             @method('PUT')
 
             <div class="row">
-                <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="col-xs-2 col-sm-2 col-md-2"></div>
+                <div class="col-xs-8 col-sm-8 col-md-8">
                     <div class="form-group">
                         <strong>Nome:</strong>
                         <input type="text" name="name" class="form-control" value="{{$user->name}}">
@@ -48,10 +49,11 @@
                         <strong>Foto do Perfil</strong>
                         <input type="file" name="imagem" class="form-control-file">
                     </div>
-
-                    <button type="submit" class="btn btn-success pull-left">
-                        <i class="fas fa-sync"></i> Salvar
-                    </button>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-sync"></i> Atualizar
+                        </button>
+                    </div>
                 </div>
             </div>
         </form>

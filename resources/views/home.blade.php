@@ -6,6 +6,8 @@
 
 <div class="container-fluid">
     <div class="row">
+
+        @if (Auth::user()->isAdmin() || Auth::user()->isProfessor())
         <div class="col-lg-3 col-6">
             <div class="small-box bg-info">
                 <div class="inner">
@@ -21,7 +23,9 @@
                 </a>
             </div>
         </div>
+        @endif
 
+        @if (Auth::user()->isAdmin() || Auth::user()->isProfessor())
         <div class="col-lg-3 col-6">
             <div class="small-box bg-success">
                 <div class="inner">
@@ -37,7 +41,9 @@
                 </a>
             </div>
         </div>
+        @endif
 
+        @if (Auth::user()->isAdmin())
         <div class="col-lg-3 col-6">
             <div class="small-box bg-warning">
                 <div class="inner">
@@ -53,7 +59,9 @@
                 </a>
             </div>
         </div>
+        @endif
 
+        @if (Auth::user()->isAdmin() || Auth::user()->isProfessor())
         <div class="col-lg-3 col-6">
             <div class="small-box bg-danger">
                 <div class="inner">
@@ -69,7 +77,9 @@
                 </a>
             </div>
         </div>
+        @endif
 
+        @if (Auth::user()->isAdmin() || Auth::user()->isProfessor())
         <div class="col-lg-3 col-6">
             <div class="small-box bg-danger">
                 <div class="inner">
@@ -85,7 +95,8 @@
                 </a>
             </div>
         </div>
-
+        @endif
+        @if (Auth::user()->isAdmin() || Auth::user()->isProfessor())
         <div class="col-lg-3 col-6">
             <div class="small-box bg-warning">
                 <div class="inner">
@@ -101,7 +112,9 @@
                 </a>
             </div>
         </div>
+        @endif
 
+        @if (Auth::user()->isAdmin() || Auth::user()->isProfessor())
         <div class="col-lg-3 col-6">
             <div class="small-box bg-success">
                 <div class="inner">
@@ -117,9 +130,10 @@
                 </a>
             </div>
         </div>
+        @endif
 
         <div class="col-lg-3 col-6">
-            <div class="small-box bg-primary">
+            <div class="small-box bg-secondary">
                 <div class="inner">
                     <h3>{{$pontuacaos}}</h3>
                     <p>Pontuações</p>
@@ -133,7 +147,23 @@
                 </a>
             </div>
         </div>
-        <div class="col-lg-6 col-6">
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-light-blue">
+                <div class="inner">
+                    <h3>{{$matriculas}}</h3>
+                    <p>Matrículas</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-university"></i>
+                </div>
+                <a href="{{route('matriculas.index')}}" class="small-box-footer">
+                    Mais Informações
+                    <i class="fas fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+        @if (Auth::user()->isAdmin())
+        <div class="col-lg-3 col-6">
             <div class="small-box bg-secondary">
                 <div class="inner">
                     <h3>{{$funcaos}}</h3>
@@ -148,28 +178,7 @@
                 </a>
             </div>
         </div>
-
-        {{-- <div class="col-lg-6 col-6">
-            <div class="small-box bg-light-blue">
-                <div class="inner">
-                    <h3>{{$permissaos}}</h3>
-                    <p>Permissões</p>
-                </div>
-                <div class="icon">
-                    <i class="ion ion-lock-combination"></i>
-                </div>
-                <a href="{{route('permissaos.index')}}" class="small-box-footer">
-                    Mais Informações
-                    <i class="fas fa-arrow-circle-right"></i>
-                </a>
-            </div>
-        </div> --}}
+        @endif
     </div>
 </div>
-
-
-
-
-
-
 @endsection

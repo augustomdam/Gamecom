@@ -15,7 +15,6 @@ class EquipePolicy
         if ($user->isAdmin()) {
             return true;
         }
-
     }
     /**
      * Determine whether the user can view the equipe.
@@ -26,10 +25,20 @@ class EquipePolicy
      */
     public function view(User $user, Equipe $equipe)
     {
-        $disciplinas = $user->disciplinas;
-        foreach ($disciplinas as $disciplina) {
-            $disciplina_id = $disciplina->id;
-            return $disciplina_id == $equipe->disciplina_id;
+        if ($user->isProfessor()) {
+            $disciplinas = $user->disciplinas;
+            foreach ($disciplinas as $disciplina) {
+                return $disciplina->id == $equipe->disciplina_id;
+            }
+        } elseif ($user->isAluno()) {
+            $matriculas = $user->matriculas;
+            $equipes =  $equipe->matriculas;
+            // dd($equipes);
+            foreach ($matriculas as $matricula) {
+                foreach ($equipes as $e) {
+                    return $matricula->user_id == $e->user_id;
+                }
+            }
         }
     }
 

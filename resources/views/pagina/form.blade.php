@@ -8,9 +8,8 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-
                     <div class="text-center">
-                        <h2>Inserir Página</h2>
+                        <h2><i class="fas fa-bars "></i> Inserir Página</h2>
                     </div>
                     <div class="pull-right">
                         <a class="btn btn-info" href="{{ route('paginas.index') }}">

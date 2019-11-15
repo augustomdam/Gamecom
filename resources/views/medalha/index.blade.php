@@ -5,7 +5,7 @@
 @section('content')
 <div class="card text-center">
     <div class="card-header">
-        <h2>Lista de Medalhas</h2>
+        <h2><i class="fas fa-medal "></i> Lista de Medalhas</h2>
         <div class="pull-right">
             @can('create', App\Medalha::class)
                 <a class="btn btn-info" href="{{ route('medalhas.create') }}">
@@ -42,15 +42,21 @@
                         <a class="btn btn-warning" href="{{ route('medalhas.show',$medalha->id) }}">
                             <i class="fas fa-eye"></i>
                         </a>
-                        <a class="btn btn-primary" href="{{ route('medalhas.edit',$medalha->id) }}">
-                            <i class="fas fa-pencil-alt"></i>
-                        </a>
+                        @can('update', $medalha)
+                            <a class="btn btn-primary" href="{{ route('medalhas.edit',$medalha->id) }}">
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>
+                        @endcan
+
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger "
-                            onclick="return confirm('Deseja mesmo Excluir a Medalha?');">
-                            <i class="fas fa-trash"></i>
-                        </button>
+                        @can('delete', $medalha)
+                            <button type="submit" class="btn btn-danger "
+                                onclick="return confirm('Deseja mesmo Excluir a Medalha?');">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        @endcan
+
                     </form>
                 </td>
             </tr>

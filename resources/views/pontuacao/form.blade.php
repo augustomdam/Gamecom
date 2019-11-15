@@ -9,7 +9,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="text-center">
-                        <h2>Incluir Pontuaçao</h2>
+                        <h2><i class="fas fa-chart-line "></i> Incluir Pontuaçao</h2>
                     </div>
                     <div class="pull-right">
                         <a class="btn btn-primary" href="{{ route('pontuacaos.index') }}">

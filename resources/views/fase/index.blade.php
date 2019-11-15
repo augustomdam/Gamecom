@@ -5,7 +5,7 @@
 @section('content')
 <div class="card text-center">
     <div class="card-header">
-        <h2>Lista de Fases</h2>
+        <h2><i class="fas fa-laptop-code "></i> Lista de Fases</h2>
         <div class="pull-right">
             @can('create', App\Fase::class)
                 <a class="btn btn-info" href="{{ route('fases.create') }}">

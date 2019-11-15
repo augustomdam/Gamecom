@@ -15,7 +15,6 @@ class DisciplinaPolicy
         if ($user->isAdmin()) {
             return true;
         }
-
     }
     /**
      * Determine whether the user can view the disciplina.
@@ -26,7 +25,15 @@ class DisciplinaPolicy
      */
     public function view(User $user, Disciplina $disciplina)
     {
-        return $user->id == $disciplina->user_id;
+        if ($user->isProfessor()) {
+            return $user->id == $disciplina->user_id;
+        } elseif ($user->isAluno()) {
+            $matriculas = $user->matriculas;
+
+            foreach ($matriculas as $matricula) {
+                return  $matricula->disciplina_id == $disciplina->id;
+            }
+        }
     }
 
     /**

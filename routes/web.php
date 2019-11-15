@@ -34,13 +34,13 @@ Route::group(['middleware' => ['verified']], function () {
     //crud funções
     Route::resource('funcaos', 'FuncaosController')->middleware('can:create, App\Funcao');
     //users
-    Route::get('users/list', 'UserController@list')->name('user.list')->middleware('can:view, user');
+    Route::get('users/list', 'UserController@list')->name('user.list')->middleware('can:create, App\User');
     Route::get('user/profile', 'UserController@profile')->name('user.profile');
     Route::get('user/edit/{user}', 'UserController@profileEdit')->name('user.edit');
     Route::put('user/{user}', 'UserController@profileUpdate')->name('user.update');
     //users-funcaos
-    Route::get('funcao/user/{user}', 'UserController@atribuirFuncao')->name('user.atribuir');
-    Route::post('funcao/user', 'UserController@atribuiFuncao')->name('user.atribuiFuncao');
-    Route::delete('user/{user}/funcao/{funcao}', 'UserController@deleteFuncao')->name('user.deleteFuncao');
+    Route::get('funcao/user/{user}', 'UserController@atribuirFuncao')->name('user.atribuir')->middleware('can:create, App\User');
+    Route::post('funcao/user', 'UserController@atribuiFuncao')->name('user.atribuiFuncao')->middleware('can:create, App\User');
+    Route::delete('user/{user}/funcao/{funcao}', 'UserController@deleteFuncao')->name('user.deleteFuncao')->middleware('can:create, App\User');
 
 });

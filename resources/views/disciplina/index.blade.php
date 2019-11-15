@@ -7,7 +7,7 @@
 
 <div class="card text-center">
     <div class="card-header">
-        <h2>Lista de Disciplinas</h2>
+        <h2><i class="fa fa-address-book"></i> Lista de Disciplinas</h2>
         <div class="pull-right">
             @can('create', App\Disciplina::class)
                 <a class="btn btn-info" href="{{ route('disciplinas.create') }}">
@@ -42,19 +42,23 @@
                 <td>{{ $disciplina->user->name }}</td>
                 <td>
                     <form action="{{ route('disciplinas.destroy',$disciplina->id) }}" method="POST">
+
                         <a class="btn btn-warning" href="{{ route('disciplinas.show',$disciplina->id) }}">
                             <i class="fas fa-eye"></i>
                         </a>
-                        <a class="btn btn-primary" href="{{ route('disciplinas.edit',$disciplina->id) }}">
-                            <i class="fas fa-pencil-alt"></i>
-                        </a>
+                        @can('update', $disciplina)
+                            <a class="btn btn-primary" href="{{ route('disciplinas.edit',$disciplina->id) }}">
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>
+                        @endcan
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger "
+                        @can('delete', $disciplina)
+                            <button type="submit" class="btn btn-danger "
                             onclick="return confirm('Deseja mesmo Excluir a Disciplina?');">
                             <i class="fas fa-trash"></i>
-                        </button>
-
+                            </button>
+                        @endcan
                     </form>
                 </td>
             </tr>

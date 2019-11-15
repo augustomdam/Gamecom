@@ -5,7 +5,7 @@
 @section('content')
 <div class="card text-center">
     <div class="card-header">
-        <h2>Detalhando a Matricula</h2>
+        <h2><i class="fas fa-business-time "></i> Detalhando a Matricula</h2>
     </div>
     <div class="card-body">
         <table class="table table-bordered">

@@ -8,7 +8,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h2 class="text-center">Inserir Disciplina</h2>
+                    <h2 class="text-center"><i class="fa fa-address-book"></i> Inserir Disciplina</h2>
                     <div class="pull-right">
                         <a class="btn btn-info" href="{{ route('disciplinas.index') }}">
                             <i class="fas fa-undo-alt"></i> Voltar

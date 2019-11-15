@@ -15,7 +15,7 @@ class Equipe extends Model
         return $this->belongsTo(Disciplina::class);
     }
 
-    public function matricula()
+    public function matriculas()
     {
         return $this->hasMany(Matricula::class);
     }

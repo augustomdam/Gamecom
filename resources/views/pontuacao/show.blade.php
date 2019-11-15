@@ -5,7 +5,7 @@
 @section('content')
 <div class="card text-center">
     <div class="card-header">
-        <h2>Detalhando a Pontuação</h2>
+        <h2><i class="fas fa-chart-line "></i> Detalhando a Pontuação</h2>
     </div>
     <div class="card-body">
         <table class="table table-bordered">

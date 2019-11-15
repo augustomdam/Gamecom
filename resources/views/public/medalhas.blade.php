@@ -39,12 +39,12 @@
         <div class="col-md-9">
             <div class="card text-center">
                 <div class="card-header">
-                    <h3 class="card-title">Medalhas</h3>
+                    <h3>Medalhas <i class="fa fa-medal"></i></h3>
                 </div>
                 <div class="card-body">
                     @foreach ($fases as $fase)
                     <p class="card-text text-justify">
-                        <img src="{{asset('storage/'.$fase->medalha->imagem)}}" width="20%">
+                        <img src="{{asset('storage/'.$fase->medalha->imagem)}}" width="15%">
                         <b>{{$fase->medalha->descricao}}</b>
                     </p>
                     @endforeach

@@ -5,7 +5,7 @@
 @section('content')
 <div class="card text-center">
     <div class="card-header">
-        <h2>Detalhando Medalha</h2>
+        <h2><i class="fas fa-medal "></i> Detalhando Medalha</h2>
     </div>
     <div class="card-body">
         <table class="table table-bordered">
@@ -30,14 +30,19 @@
                         <a class="btn btn-warning" href="{{ route('medalhas.index',$medalha->id) }}">
                             <i class="fas fa-undo"></i>
                         </a>
-                        <a class="btn btn-primary" href="{{ route('medalhas.edit',$medalha->id) }}" >
-                            <i class="fas fa-pencil-alt"></i>
-                        </a>
+                        @can('update', $medalha)
+                            <a class="btn btn-primary" href="{{ route('medalhas.edit',$medalha->id) }}">
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>
+                        @endcan
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger " onclick="return confirm('Deseja mesmo Excluir a Medalha?');">
-                            <i class="fas fa-trash"></i>
-                        </button>
+                        @can('delete', $medalha)
+                            <button type="submit" class="btn btn-danger "
+                                onclick="return confirm('Deseja mesmo Excluir a Medalha?');">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        @endcan
                     </form>
                 </td>
             </tr>

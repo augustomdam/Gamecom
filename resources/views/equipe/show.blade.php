@@ -5,7 +5,7 @@
 @section('content')
 <div class="card text-center">
     <div class="card-header">
-        <h2>Detalhando a Equipe</h2>
+        <h2><i class="fas fa-users "></i> Detalhando a Equipe</h2>
     </div>
     <div class="card-body">
         <table class="table table-bordered">
@@ -24,18 +24,21 @@
                 <td>{{ $equipe->disciplina->nome }}</td>
                 <td>
                     <form action="{{ route('equipes.destroy',$equipe->id) }}" method="POST">
-
                         <a class="btn btn-warning" href="{{ route('equipes.index') }}">
                             <i class="fas fa-undo"></i>
                         </a>
-                        <a class="btn btn-primary" href="{{ route('equipes.edit',$equipe->id) }}" >
-                            <i class="fas fa-pencil-alt"></i>
-                        </a>
+                        @can('update', $equipe)
+                            <a class="btn btn-primary" href="{{ route('equipes.edit',$equipe->id) }}" >
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>
+                        @endcan
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger " onclick="return confirm('Deseja mesmo Excluir a equipe?');">
-                            <i class="fas fa-trash"></i>
-                        </button>
+                        @can('delete', $equipe)
+                            <button type="submit" class="btn btn-danger " onclick="return confirm('Deseja mesmo Excluir a equipe?');">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        @endcan
                     </form>
                 </td>
             </tr>

@@ -9,7 +9,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="text-center">
-                        <h2>Editar Equipe</h2>
+                        <h2><i class="fas fa-users "></i> Editar Equipe</h2>
                     </div>
                     <div class="pull-right">
                         <a class="btn btn-info" href="{{ route('equipes.index') }}">

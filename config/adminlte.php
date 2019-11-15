@@ -108,8 +108,11 @@ return [
 
     'menu' => [
         [
-            'text' => 'search',
             'search' => true,
+            'href' => 'test',  //form action
+            'method' => 'POST', //form method
+            'input_name' => 'menu-search-input', //input name
+            'text' => 'Search', //input placeholder
         ],
         ['header' => 'main_navigation'],
         [
@@ -128,7 +131,7 @@ return [
                     'text'        => 'Disciplinas',
                     'url'         => '/disciplinas',
                     'icon'        => 'fas fa-address-book',
-                    //'label'       => 4,
+                    // 'label'       => ,
                     'label_color' => 'success',
                 ],
                 [

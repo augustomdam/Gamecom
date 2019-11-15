@@ -16,7 +16,7 @@ class FaseController extends Controller
      */
     public function index()
     {
-        $fases = Fase::paginate(10);
+        $fases = Fase::paginate(20);
         return view('fase.index', compact('fases'));
     }
 

@@ -5,7 +5,7 @@
 @section('content')
 <div class="card text-center">
     <div class="card-header">
-        <h2>Lista de Matrículas</h2>
+        <h2><i class="fas fa-business-time "></i> Lista de Matrículas</h2>
         <div class="pull-right">
             @can('create', App\Matricula::class)
                 <a class="btn btn-info" href="{{ route('matriculas.create') }}">

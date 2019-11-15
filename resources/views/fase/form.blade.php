@@ -9,7 +9,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="text-center">
-                        <h2>Inserir Fase</h2>
+                        <h2><i class="fas fa-laptop-code "></i> Inserir Fase</h2>
                     </div>
                     <div class="pull-right">
                         <a class="btn btn-info" href="{{ route('fases.index') }}">

@@ -5,7 +5,7 @@
 @section('content')
 <div class="card text-center">
     <div class="card-header">
-        <h2>Detalhando Gamificação</h2>
+        <h2><i class="fas fa-gamepad "></i> Detalhando Gamificação</h2>
     </div>
     <div class="card-body">
         <table class="table table-bordered">

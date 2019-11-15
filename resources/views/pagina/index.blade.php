@@ -5,7 +5,7 @@
 @section('content')
 <div class="card text-center">
     <div class="card-header">
-        <h2>Lista de Páginas</h2>
+        <h2><i class="fas fa-bars "></i> Lista de Páginas</h2>
         <div class="pull-right">
             @can('create', App\Pagina::class)
                 <a class="btn btn-info" href="{{ route('paginas.create') }}">
