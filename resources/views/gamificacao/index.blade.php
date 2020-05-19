@@ -36,7 +36,8 @@
             @can('view', $gamifica)
             <tr>
                 <td>{{ $gamifica->id }}</td>
-                <td>{{ $gamifica->banner }}</td>
+                <td><img src="{{ url("http://gamecomstorage.s3-sa-east-1.amazonaws.com/". $gamifica->banner) }}"
+                    alt="{{$gamifica->banner}}" height="10%"></td>
                 <td>{{ $gamifica->desc_fases_pontos }}</td>
                 <td>{{ $gamifica->desc_desafios_estrategias }}</td>
                 <td>{{ $gamifica->desc_medalhas }}</td>

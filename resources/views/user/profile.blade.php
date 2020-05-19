@@ -14,7 +14,7 @@
         <div class="col-md-6">
             <div class="card mb-3 text-center">
                 <div class="card-header">
-                    <img class="img-bordered" src="{{ asset('storage/'. $user->imagem) }}" alt="{{$user->imagem}}"
+                    <img class="img-bordered" src="{{ url("http://gamecomstorage.s3-sa-east-1.amazonaws.com/". $user->imagem)}}" alt="{{$user->imagem}}"
                         style="width: 40%;">
                 </div>
                 <div class="card-body">

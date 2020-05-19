@@ -50,11 +50,11 @@
                                     <textarea name="corpo" rows="10" class="form-control"
                                         placeholder="corpo">{{$pagina->corpo}}</textarea>
                                 </div>
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <strong>Tipo:</strong>
                                     <input type="text" name="tipo" value="{{$pagina->tipo}}" class="form-control"
                                         placeholder="tipo">
-                                </div>
+                                </div> --}}
                                 <div class="form-group" hidden>
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="inputGroupSelect01">Disciplina</label>

@@ -6,26 +6,33 @@ use App\Disciplina;
 use App\Equipe;
 use App\Funcao;
 use App\Matricula;
+use App\User;
 use Illuminate\Http\Request;
 
 class MatriculaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $matriculas = Matricula::paginate(10);
+        $matriculas = Matricula::paginate(20);
         return view('matricula.index', compact('matriculas'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function buscar(Request $request)
+    {
+        $search = $request->get('search');
+        $aluno = User::where('name', 'LIKE', '%' . $search . '%')->get();
+        if ($aluno->isEmpty() || $search == null) {
+            return redirect()->route('matriculas.index')
+                        ->with('warning', 'Matricula não encontrada!');
+        } else {
+            foreach ($aluno as $a) {
+                $matriculas = Matricula::where('user_id', $a->id)
+                                ->paginate(10);
+            }
+
+            return view('matricula.index', compact('matriculas'));
+        }
+    }
     public function create()
     {
         //autorização
@@ -59,7 +66,7 @@ class MatriculaController extends Controller
         Matricula::create($request->all());
 
         return redirect()->route('matriculas.index')
-                        ->with('success','Matricula criada com Sucesso!');
+            ->with('success', 'Matricula criada com Sucesso!');
     }
 
     /**
@@ -92,7 +99,7 @@ class MatriculaController extends Controller
         $disciplinas = Disciplina::all();
         $equipes = Equipe::all();
 
-        return view('matricula.formEdit', compact('matricula','alunos', 'disciplinas', 'equipes'));
+        return view('matricula.formEdit', compact('matricula', 'alunos', 'disciplinas', 'equipes'));
     }
 
     /**
@@ -115,7 +122,7 @@ class MatriculaController extends Controller
         $matricula->update($request->all());
 
         return redirect()->route('matriculas.index')
-                        ->with('success','Matricula Atualizada com Sucesso!');
+            ->with('success', 'Matricula Atualizada com Sucesso!');
     }
 
     /**
@@ -130,6 +137,6 @@ class MatriculaController extends Controller
         $this->authorize('delete', $matricula);
         $matricula->delete();
         return redirect()->route('matriculas.index')
-        ->with('success','Matricula excluida com Sucesso!');
+            ->with('success', 'Matricula excluida com Sucesso!');
     }
 }

@@ -14,17 +14,17 @@
                 <th>Titulo</th>
                 <th>Banner</th>
                 <th>Corpo</th>
-                <th>Tipo</th>
+                {{-- <th>Tipo</th> --}}
                 <th>Disciplina</th>
                 <th colspan="3">Ações</th>
             </tr>
             <tr>
                 <td>{{ $pagina->id }}</td>
                 <td>{{ $pagina->titulo }}</td>
-                <td><img src="{{ asset('storage/'. $pagina->banner) }}"
-                alt="{{$pagina->banner}}" width="100px" height="50px"></td>
+                <td><img src="{{ url("http://gamecomstorage.s3-sa-east-1.amazonaws.com/". $pagina->banner) }}"
+                alt="{{$pagina->banner}}" height="10%"></td>
                 <td>{{ $pagina->corpo }}</td>
-                <td>{{ $pagina->tipo }}</td>
+                {{-- <td>{{ $pagina->tipo }}</td> --}}
                 <td>{{ $pagina->disciplina->nome }}</td>
                 <td>
                     <form action="{{ route('paginas.destroy',$pagina->id) }}" method="POST">

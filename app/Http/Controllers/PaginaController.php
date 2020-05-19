@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Disciplina;
 use App\Pagina;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PaginaController extends Controller
 {
@@ -12,26 +13,14 @@ class PaginaController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        // mas, você pode fazer uso dos métodos fluentes: only e except
-        // ex.: $this->middleware('auth')->only(['create', 'store']);
-        // ex.: $this->middleware('auth')->except('index');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $paginas = Pagina::paginate(10);
         return view('pagina.index', compact('paginas'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //autorização
@@ -40,31 +29,21 @@ class PaginaController extends Controller
         return view('pagina.form', compact('disciplinas'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //autorização
         $this->authorize('create', Pagina::class);
         $request->validate([
             'titulo' => 'required',
-            'banner' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
+            // 'banner' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
             'corpo' => 'required',
-            'tipo' => 'required',
             'disciplina_id' => 'required|unique:paginas,disciplina_id',
         ]);
 
-        $imageName = time() . '.' . request()->banner->getClientOriginalExtension();
-
         Pagina::create([
             'titulo' => $request['titulo'],
-            'banner' => $request['banner']->storeAs('imagem', $imageName),
+            'banner' => Storage::put('paginas', $request['banner'], 'public'),
             'corpo' => $request['corpo'],
-            'tipo' => $request['tipo'],
             'disciplina_id' => $request['disciplina_id']
         ]);
 
@@ -72,12 +51,6 @@ class PaginaController extends Controller
             ->with('success', 'Pagina criada com Sucesso!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Pagina  $pagina
-     * @return \Illuminate\Http\Response
-     */
     public function show(Pagina $pagina)
     {
         //autorização
@@ -85,12 +58,6 @@ class PaginaController extends Controller
         return view('pagina.show', compact('pagina'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Pagina  $pagina
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Pagina $pagina)
     {
         //autorização
@@ -99,48 +66,33 @@ class PaginaController extends Controller
         return view('pagina.formEdit', compact('pagina'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Pagina  $pagina
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Pagina $pagina)
     {
         $this->authorize('update', $pagina);
         $request->validate([
             'titulo' => 'required',
-            'banner' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
+            // 'banner' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
             'corpo' => 'required',
-            'tipo' => 'required',
             'disciplina_id' => 'required',
         ]);
-
-        $imageName = time() . '.' . request()->banner->getClientOriginalExtension();
-
+        Storage::delete($pagina->banner);
         $pagina->update([
             'titulo' => $request['titulo'],
-            'banner' => $request['banner']->storeAs('imagem', $imageName),
+            'banner' => Storage::put('paginas', $request['banner'], 'public'),
             'corpo' => $request['corpo'],
-            'tipo' => $request['tipo'],
             'disciplina_id' => $request['disciplina_id']
         ]);
+
         return redirect()->route('paginas.index')
             ->with('success', 'Pagina atualizada com Sucesso!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Pagina  $pagina
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Pagina $pagina)
     {
         //autorização
         $this->authorize('delete', $pagina);
         $pagina->delete();
+        Storage::delete($pagina->banner);
         return redirect()->route('paginas.index')
             ->with('success', 'Pagina excluida com Sucesso!');
     }

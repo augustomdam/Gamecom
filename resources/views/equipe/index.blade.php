@@ -33,7 +33,8 @@
             <tr>
                 <td>{{ $equipe->id }}</td>
                 <td>{{ $equipe->nome }}</td>
-                <td>{{ $equipe->logo }}</td>
+                <td><img src="{{ url("http://gamecomstorage.s3-sa-east-1.amazonaws.com/". $equipe->logo) }}"
+                    alt="{{$equipe->logo}}" width="100px" height="50px"></td>
                 <td>{{ $equipe->disciplina->nome }}</td>
                 <td>
                     <form action="{{ route('equipes.destroy',$equipe->id) }}" method="POST">

@@ -6,34 +6,21 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Notifications\ResetPassword;
+use App\Notifications\EmailVerify;
+
 
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'name', 'email', 'password', 'imagem',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password', 'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
@@ -61,12 +48,14 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function sendPasswordResetNotification($token)
     {
-
         $this->notify(new ResetPassword($token));
     }
 
     public function ranking(){
         return $this->hasOne(Ranking::class);
+    }
+    public function ranking_equipe(){
+        return $this->hasOne(RankingEquipe::class);
     }
 
     public function isAdmin(){
@@ -95,5 +84,9 @@ class User extends Authenticatable implements MustVerifyEmail
             }
         }
     }
+
+    // public function sendEmailVerificationNotification(User $user){
+    //     $this->notify(new EmailVerify($user->id));
+    // }
 
 }

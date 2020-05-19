@@ -54,7 +54,20 @@
                                         <option value="Letras Português">Letras Português</option>
                                         <option value="Matemática">Matemática</option>
                                         <option value="Pedagogia">Pedagogia</option>
-                                        <option value="Sistema de Informação">Sistema de Informação</option>
+                                        <option value="Sistemas de Informação">Sistemas de Informação</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="selectInstituicao">Instituição</label>
+                                    </div>
+                                    <select class="form-control" id="selectInstituicao" name="">
+                                        <option selected>Selecione...</option>
+                                        <option value="UFPA">UFPA</option>
+                                        <option value="UFRA">UFRA</option>
+                                        <option value="IFPA">IFPA</option>
                                     </select>
                                 </div>
                             </div>

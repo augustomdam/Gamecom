@@ -5,25 +5,16 @@ namespace App\Http\Controllers;
 use App\Disciplina;
 use App\Gamificacao;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class GamificacaoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $gamificacaos = Gamificacao::paginate(10);;
         return view('gamificacao.index', compact('gamificacaos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //autorização
@@ -32,18 +23,12 @@ class GamificacaoController extends Controller
         return view('gamificacao.form', compact('disciplinas'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //autorização
         $this->authorize('create', Gamificacao::class);
         $request->validate([
-            'banner' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
+            // 'banner' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
             'desc_fases_pontos' => 'required',
             'desc_desafios_estrategias' => 'required',
             'desc_medalhas' => 'required',
@@ -51,10 +36,8 @@ class GamificacaoController extends Controller
             'disciplina_id' => 'required|unique:gamificacaos,disciplina_id',
         ]);
 
-        $imageName = time().'.'.request()->banner->getClientOriginalExtension();
-
         Gamificacao::create([
-            'banner' => $request['banner']->storeAs('imagem', $imageName),
+            'banner' => Storage::put('gamificacaos', $request['banner'], 'public'),
             'desc_fases_pontos' => $request['desc_fases_pontos'],
             'desc_desafios_estrategias' => $request['desc_desafios_estrategias'],
             'desc_medalhas' => $request['desc_medalhas'],
@@ -66,12 +49,6 @@ class GamificacaoController extends Controller
                         ->with('success','Gamificação criada com Sucesso!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Gamificacao  $gamificacao
-     * @return \Illuminate\Http\Response
-     */
     public function show(Gamificacao $gamificacao)
     {
         //autorização
@@ -79,12 +56,6 @@ class GamificacaoController extends Controller
         return view('gamificacao.show',compact('gamificacao'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Gamificacao  $gamificacao
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Gamificacao $gamificacao)
     {
         //autorização
@@ -93,30 +64,21 @@ class GamificacaoController extends Controller
         return view('gamificacao.formEdit', compact('gamificacao','disciplinas'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Gamificacao  $gamificacao
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Gamificacao $gamificacao)
     {
         //autorização
         $this->authorize('update', $gamificacao);
         $request->validate([
-            'banner' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
+            // 'banner' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
             'desc_fases_pontos' => 'required',
             'desc_desafios_estrategias' => 'required',
             'desc_medalhas' => 'required',
             'desc_ranking_premiacao' => 'required',
             'disciplina_id' => 'required',
         ]);
-
-        $imageName = time().'.'.request()->banner->getClientOriginalExtension();
-
+        Storage::delete($gamificacao->banner);
         $gamificacao->update([
-            'banner' => $request['banner']->storeAs('imagem', $imageName),
+            'banner' => Storage::put('gamificacaos', $request['banner'], 'public'),
             'desc_fases_pontos' => $request['desc_fases_pontos'],
             'desc_desafios_estrategias' => $request['desc_desafios_estrategias'],
             'desc_medalhas' => $request['desc_medalhas'],
@@ -128,17 +90,12 @@ class GamificacaoController extends Controller
                         ->with('success','Gamificação Atualizada com Sucesso!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Gamificacao  $gamificacao
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Gamificacao $gamificacao)
     {
         //autorização
         $this->authorize('update', $gamificacao);
         $gamificacao->delete();
+        Storage::delete($gamificacao->banner);
         return redirect()->route('gamificacaos.index')
                         ->with('success','Gamificação Excluida com Sucesso!');
     }

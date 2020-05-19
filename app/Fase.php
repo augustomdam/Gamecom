@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Fase extends Model
 {
     protected $fillable = [
-        'ordem', 'tipo', 'banner', 'nomefase', 'objetivo',
+        'ordem', 'nivel','banner', 'nomefase', 'objetivo',
         'pontuacao', 'avaliacao', 'documento', 'prazo',
         'medalha_id', 'disciplina_id',
     ];

@@ -51,10 +51,19 @@
                                         <option value="10">Décima</option>
                                     </select>
                                 </div>
-                                <div class="form-group">
-                                    <strong>Tipo:</strong>
-                                    <input type="text" name="tipo" class="form-control" value="{{$fase->tipo}}">
+                                
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="selectNivel">Nível</label>
+                                    </div>
+                                    <select class="custom-select" id="selectNivel" name="nivel">
+                                        <option selected>{{$fase->nivel}}</option>
+                                        <option value="Easy">Easy</option>
+                                        <option value="Medium">Medium</option>
+                                        <option value="Hard">Hard</option>
+                                    </select>
                                 </div>
+                                
                                 <div class="form-group">
                                     <strong>Banner:</strong>
                                     <input type="file" name="banner" class="form-control-file">

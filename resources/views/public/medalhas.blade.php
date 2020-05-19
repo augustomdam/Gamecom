@@ -14,12 +14,12 @@
                 <div class="card-body">
                     @foreach ($fases as $fase)
                     <a href="{{route ('fase.show', [$disciplina->id, $fase->id])}}">
-                        <img src="{{ asset('storage/'. $fase->banner) }}" class="card-img mt-3">
+                        <img src="{{ url("http://gamecomstorage.s3-sa-east-1.amazonaws.com/". $fase->banner) }}" class="card-img mt-3">
                     </a>
                     @endforeach
                 </div>
             </div>
-            <div class="card">
+            <div class="card mb-3">
                 <a href="{{route('disciplina.gamificacao', $disciplina->id)}}">
                     <div class="card-header">Gamificação</div>
                 </a>
@@ -27,11 +27,11 @@
                     <a href="{{route('disciplina.gamificacao', $disciplina->id)}}">
                         <img src="{{ asset('images/gamificacao.jpg') }}" class="card-img">
                     </a>
-                    <a href="{{route('disciplina.ranking', $disciplina->id)}}">
-                        <img src="{{ asset('images/menu-ranking.png') }}" class="card-img mt-1">
-                    </a>
                     <a href="{{route('disciplina.medalhas', $disciplina->id)}}">
                         <img src="{{ asset('images/menu-medalhas.png') }}" class="card-img mt-3">
+                    </a>
+                    <a href="{{route('disciplina.ranking', $disciplina->id)}}">
+                        <img src="{{ asset('images/menu-ranking.png') }}" class="card-img mt-1">
                     </a>
                 </div>
             </div>
@@ -42,10 +42,10 @@
                     <h3>Medalhas <i class="fa fa-medal"></i></h3>
                 </div>
                 <div class="card-body">
-                    @foreach ($fases as $fase)
+                    @foreach ($medalhas as $medalha)
                     <p class="card-text text-justify">
-                        <img src="{{asset('storage/'.$fase->medalha->imagem)}}" width="15%">
-                        <b>{{$fase->medalha->descricao}}</b>
+                        <img src="{{url("http://gamecomstorage.s3-sa-east-1.amazonaws.com/". $medalha->imagem)}}" width="15%">
+                        <b>{{$medalha->descricao}}</b>
                     </p>
                     @endforeach
                 </div>

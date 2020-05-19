@@ -28,6 +28,7 @@
                 <th>ID</th>
                 <th>Nome</th>
                 <th>Curso</th>
+                <th>Instituição</th>
                 <th>Semestre</th>
                 <th>Professor</th>
                 <th width="280px">Ações</th>
@@ -38,6 +39,7 @@
                 <td>{{ $disciplina->id }}</td>
                 <td>{{ $disciplina->nome }}</td>
                 <td>{{ $disciplina->curso }}</td>
+                <td>{{ $disciplina->instituicao }}</td>
                 <td>{{ $disciplina->semestre }}</td>
                 <td>{{ $disciplina->user->name }}</td>
                 <td>

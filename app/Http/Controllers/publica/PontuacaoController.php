@@ -8,6 +8,8 @@ use App\Fase;
 use App\Http\Controllers\Controller;
 use App\Pontuacao;
 use App\Ranking;
+use App\RankingEquipe;
+use Illuminate\Support\Facades\DB;
 
 class PontuacaoController extends Controller
 {
@@ -17,26 +19,26 @@ class PontuacaoController extends Controller
 
         $ranking_alunos = Ranking::where('disciplina_id', $disciplina->id)->select('user_id', 'ponto_total')
             ->orderBy('ponto_total', 'DESC')->get();
-        $ranking_equipe = Ranking::where('disciplina_id', $disciplina->id)->select('equipe_id', 'ponto_total')
-            ->orderBy('ponto_total', 'DESC')->get();
+            // dd($ranking_alunos);
 
-        $aluno = Funcao::where('nome', 'aluno')->get();
-        foreach ($aluno as $a) {
-            $alunos = Funcao::find($a->id)->users;
-        }
-        foreach ($alunos as $aluno) {
-            $medalhas[$aluno->id] = Pontuacao::where('user_id', $aluno->id)->select('fase_id')
-                                    ->get();
-        }
+        $ranking_equipe = RankingEquipe::where('disciplina_id', $disciplina->id)
+                            ->orderBy('ponto_total', 'DESC')
+                                ->get();
 
-        // $rankings = array_merge($ranking_alunos, $medalhas);
-        // dd($medalhas);
+        // dd($ranking_equipe);
         return view('public.ranking', compact(
             'disciplina',
             'fases',
             'ranking_alunos',
-            'ranking_equipe',
-            'medalhas'
+            'ranking_equipe'
         ));
     }
+    public function getMedalhas($user_id){
+        return Pontuacao::where('user_id', $user_id)->get();
+    }
+
+    // public function getEquipes($equipe_id){
+    //     return Ranking::where('equipe_id', $equipe_id)->max('ponto_total');
+    // }
+
 }

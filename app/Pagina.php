@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pagina extends Model
 {
     protected $fillable = [
-        'titulo', 'banner', 'corpo', 'tipo', 'disciplina_id',
+        'titulo', 'banner', 'corpo', 'disciplina_id',
     ];
 
     public function disciplina()

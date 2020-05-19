@@ -60,14 +60,25 @@ class HomeController extends Controller
 
             $disciplinas = Disciplina::where('user_id', Auth::user()->id)->count();
             $disciplinass = Disciplina::where('user_id', Auth::user()->id)->get();
-            foreach ($disciplinass as $disciplina) {
-                $paginas = Pagina::where('disciplina_id', $disciplina->id)->count();
-                $medalhas = Medalha::where('disciplina_id', $disciplina->id)->count();
-                $equipes = Equipe::where('disciplina_id', $disciplina->id)->count();
-                $fases = Fase::where('disciplina_id', $disciplina->id)->count();
-                $gamificacaos = Gamificacao::where('disciplina_id', $disciplina->id)->count();
-                $pontuacaos = Pontuacao::where('disciplina_id', $disciplina->id)->count();
-                $matriculas = Matricula::where('disciplina_id', $disciplina->id)->count();
+            if ($disciplinass == null) {
+                $paginas = 0;
+                $medalhas = 0;
+                $equipes = 0;
+                $fases = 0;
+                $gamificacaos = 0;
+                $pontuacaos = 0;
+                $funcaos = 0;
+                $matriculas = 0;
+            } else {
+                foreach ($disciplinass as $disciplina) {
+                    $paginas = Pagina::where('disciplina_id', $disciplina->id)->count();
+                    $medalhas = Medalha::where('disciplina_id', $disciplina->id)->count();
+                    $equipes = Equipe::where('disciplina_id', $disciplina->id)->count();
+                    $fases = Fase::where('disciplina_id', $disciplina->id)->count();
+                    $gamificacaos = Gamificacao::where('disciplina_id', $disciplina->id)->count();
+                    $pontuacaos = Pontuacao::where('disciplina_id', $disciplina->id)->count();
+                    $matriculas = Matricula::where('disciplina_id', $disciplina->id)->count();
+                }
             }
             return view('home', compact(
                 'disciplinas',
@@ -79,29 +90,14 @@ class HomeController extends Controller
                 'pontuacaos',
                 'matriculas'
             ));
-        }elseif (Auth::user()->isaluno()) {
-            // $disciplinas = Disciplina::where('user_id', Auth::user()->id)->count();
-            // $disciplinass = Disciplina::where('user_id', Auth::user()->id)->get();
-            // foreach ($disciplinass as $disciplina) {
-                // $paginas = Pagina::where('disciplina_id', $disciplina->id)->count();
-                // $medalhas = Medalha::where('disciplina_id', $disciplina->id)->count();
-                // $equipes = Equipe::where('disciplina_id', $disciplina->id)->count();
-                // $fases = Fase::where('disciplina_id', $disciplina->id)->count();
-                // $gamificacaos = Gamificacao::where('disciplina_id', $disciplina->id)->count();
-                $pontuacaos = Pontuacao::where('user_id', Auth::user()->id)->count();
-                $matriculas = Matricula::where('user_id', Auth::user()->id)->count();
-            // }
+        } elseif (Auth::user()->isaluno()) {
+            $pontuacaos = Pontuacao::where('user_id', Auth::user()->id)->count();
+            $matriculas = Matricula::where('user_id', Auth::user()->id)->count();
+
             return view('home', compact(
-                // 'disciplinas',
-                // 'paginas',
-                // 'medalhas',
-                // 'equipes',
-                // 'fases',
-                // 'gamificacaos',
                 'pontuacaos',
                 'matriculas'
             ));
         }
-
     }
 }

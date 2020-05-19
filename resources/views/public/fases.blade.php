@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Fase - '. $disciplina->nome)
+@section('title', 'Fases - '. $disciplina->nome)
 
 @section('content')
 <div class="container mt-5">
@@ -13,12 +13,13 @@
                 <div class="card-body">
                     @foreach ($fases as $fase)
                     <a href="{{route ('fase.show', [$disciplina->id, $fase->id])}}">
-                        <img src="{{ asset('storage/'. $fase->banner) }}" class="card-img mt-3">
+                        <img src="{{ url("http://gamecomstorage.s3-sa-east-1.amazonaws.com/". $fase->banner) }}"
+                            class="card-img mt-3">
                     </a>
                     @endforeach
                 </div>
             </div>
-            <div class="card">
+            <div class="card mb-3">
                 <a href="{{route('disciplina.gamificacao', $disciplina->id)}}">
                     <div class="card-header">Gamificação</div>
                 </a>
@@ -26,11 +27,12 @@
                     <a href="{{route('disciplina.gamificacao', $disciplina->id)}}">
                         <img src="{{ asset('images/gamificacao.jpg') }}" class="card-img">
                     </a>
-                    <a href="{{route('disciplina.ranking', $disciplina->id)}}">
-                        <img src="{{ asset('images/menu-ranking.png') }}" class="card-img mt-1">
-                    </a>
+
                     <a href="{{route('disciplina.medalhas', $disciplina->id)}}">
                         <img src="{{ asset('images/menu-medalhas.png') }}" class="card-img mt-3">
+                    </a>
+                    <a href="{{route('disciplina.ranking', $disciplina->id)}}">
+                        <img src="{{ asset('images/menu-ranking.png') }}" class="card-img mt-1">
                     </a>
                 </div>
             </div>
@@ -38,7 +40,7 @@
         <div class="col-md-9">
             <div class="card text-center">
                 <div class="card-header">
-                    <h3 class="card-title"><span>Fases e Pontuação</span></h3>
+                    <h3 class="card-title"><span>Fases</span></h3>
                     <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" id="all-tab" data-toggle="tab" href="#all" role="tab"
@@ -60,6 +62,7 @@
                             <thead>
                                 <tr>
                                     <th>Etapa</th>
+                                    <th>Nivel</th>
                                     <th>Pontuação</th>
                                     <th>Objetivo</th>
                                     <th>Avaliação</th>
@@ -71,11 +74,18 @@
                                 @foreach ($fases as $fase)
                                 <tr>
                                     <td>Fase {{$fase->ordem}}</td>
+                                    <td>{{$fase->nivel}}</td>
                                     <td>{{$fase->pontuacao}}</td>
                                     <td class="card-text text-justify">{{$fase->objetivo}}</td>
                                     <td class="card-text text-justify">{{$fase->avaliacao}}</td>
                                     <td class="card-text">{{$fase->pontuacao}}</td>
-                                    <td class="card-text">{{\Carbon\Carbon::parse($fase->prazo)->format('d/m/Y')}}</td>
+                                    @if ($fase->prazo >= date('Y-m-d'))
+                                    <td class="text-success">{{ \Carbon\Carbon::parse($fase->prazo)->format('d/m/Y') }}
+                                    </td>
+                                    @else
+                                    <td class="text-danger">
+                                        <s>{{ \Carbon\Carbon::parse($fase->prazo)->format('d/m/Y') }}</s></td>
+                                    @endif
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -89,6 +99,7 @@
                             <thead>
                                 <tr>
                                     <th>Etapa</th>
+                                    <th>Nível</th>
                                     <th>Pontuação</th>
                                     <th>Objetivo</th>
                                     <th>Avaliação</th>
@@ -99,11 +110,18 @@
                             <tbody>
                                 <tr>
                                     <td>Fase {{$fase->ordem}}</td>
+                                    <td>{{$fase->nivel}}</td>
                                     <td>{{$fase->pontuacao}}</td>
                                     <td class="card-text text-justify">{{$fase->objetivo}}</td>
                                     <td class="card-text text-justify">{{$fase->avaliacao}}</td>
                                     <td class="card-text">{{$fase->pontuacao}}</td>
-                                    <td class="card-text">{{\Carbon\Carbon::parse($fase->prazo)->format('d/m/Y')}}</td>
+                                    @if ($fase->prazo >= date('Y-m-d'))
+                                    <td class="text-success">{{ \Carbon\Carbon::parse($fase->prazo)->format('d/m/Y') }}
+                                    </td>
+                                    @else
+                                    <td class="text-danger">
+                                        <s>{{ \Carbon\Carbon::parse($fase->prazo)->format('d/m/Y') }}</s></td>
+                                    @endif
                                 </tr>
                             </tbody>
 

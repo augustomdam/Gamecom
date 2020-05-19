@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'title' => 'Gamecon',
+    'title' => 'Gamecom',
 
     'title_prefix' => '',
 
@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'logo' => '<b>Game</b>Con',
+    'logo' => '<b>Game</b>Com',
 
     'logo_mini' => '<b>G</b>MC',
 
@@ -131,11 +131,10 @@ return [
                     'text'        => 'Disciplinas',
                     'url'         => '/disciplinas',
                     'icon'        => 'fas fa-address-book',
-                    // 'label'       => ,
                     'label_color' => 'success',
                 ],
                 [
-                    'text' => 'Paginas',
+                    'text' => 'Pagina Inicial',
                     'url'  => '/paginas',
                     'icon'        => 'fas fa-bars',
                 ],

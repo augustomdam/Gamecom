@@ -21,8 +21,8 @@
             </tr>
             <tr>
                 <td>{{ $gamificacao->id }}</td>
-                <td><img src="{{ asset('storage/'. $gamificacao->banner) }}"
-                    alt="{{$gamificacao->banner}}" width="100px" height="50px"></td>
+                <td><img src="{{ url("http://gamecomstorage.s3-sa-east-1.amazonaws.com/". $gamificacao->banner) }}"
+                    alt="{{$gamificacao->banner}}" height="10%"></td>
                 <td>{{ $gamificacao->desc_fases_pontos }}</td>
                 <td>{{ $gamificacao->desc_desafios_estrategias }}</td>
                 <td>{{ $gamificacao->desc_medalhas }}</td>

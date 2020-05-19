@@ -18,7 +18,6 @@ class CreatePaginasTable extends Migration
             $table->string('titulo');
             $table->string('banner');
             $table->text('corpo');
-            $table->string('tipo');
             $table->bigInteger('disciplina_id')->unsigned();
             $table->foreign('disciplina_id')->references('id')->on('disciplinas')->onDelete('cascade');
             $table->timestamps();

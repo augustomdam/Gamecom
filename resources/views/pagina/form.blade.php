@@ -48,10 +48,10 @@
                                     <textarea name="corpo" rows="10" class="form-control"
                                     placeholder="corpo"></textarea>
                                 </div>
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <strong>Tipo:</strong>
                                     <input type="text" name="tipo" class="form-control" placeholder="tipo">
-                                </div>
+                                </div> --}}
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="inputGroupSelect01">Disciplina</label>

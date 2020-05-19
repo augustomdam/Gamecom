@@ -19,7 +19,7 @@
             <tr>
                 <td>{{ $equipe->id }}</td>
                 <td>{{ $equipe->nome }}</td>
-                <td><img src="{{ asset('storage/'. $equipe->logo) }}"
+                <td><img src="{{ url("http://gamecomstorage.s3-sa-east-1.amazonaws.com/". $equipe->logo) }}"
                     alt="{{$equipe->logo}}" width="100px" height="50px"></td>
                 <td>{{ $equipe->disciplina->nome }}</td>
                 <td>

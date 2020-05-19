@@ -1,6 +1,6 @@
 <?php
 
-Route::get('/', 'publica\HomeController@index');
+Route::get('/', 'publica\HomeController@index')->name('home.public');
 Route::group(['prefix' => 'disciplina'], function () {
     Route::get('/{disciplina}', 'publica\HomeController@detalhe')->name('disciplina.detalhe');
     Route::get('/{disciplina}/fases', 'publica\FasesController@index')->name('disciplina.fases');
@@ -29,8 +29,10 @@ Route::group(['middleware' => ['verified']], function () {
     Route::resource('fases', 'FaseController');
     //crud matriculas
     Route::resource('matriculas', 'MatriculaController');
+    Route::post('matriculas/buscar', 'MatriculaController@buscar')->name('matricula.buscar');
     //crud pontuacaos
     Route::resource('pontuacaos', 'PontuacaoController');
+    Route::post('pontuacaos/buscar', 'PontuacaoController@buscar')->name('pontuacao.buscar');
     //crud funções
     Route::resource('funcaos', 'FuncaosController')->middleware('can:create, App\Funcao');
     //users

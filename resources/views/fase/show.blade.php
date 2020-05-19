@@ -11,9 +11,9 @@
         <table class="table table-bordered">
                 <tr>
                     <th>Ordem</th>
-                    <th>Tipo</th>
-                    <th>Banner</th>
+                    <th>Nivek</th>
                     <th>Nome</th>
+                    <th>Banner</th>
                     <th>Objetivo</th>
                     <th>Pontuação</th>
                     <th>Avaliação</th>
@@ -25,19 +25,23 @@
                 </tr>
                 <tr>
                     <td>{{ $fase->ordem }}</td>
-                    <td>{{ $fase->tipo }}</td>
-                    <td><img src="{{ asset('storage/'. $fase->banner) }}"
-                    alt="{{$fase->banner}}" width="100px" height="50px"></td>
+                    <td>{{ $fase->nivel }}</td>
                     <td>{{ $fase->nomefase }}</td>
+                    <td><img src="{{url("http://gamecomstorage.s3-sa-east-1.amazonaws.com/". $fase->banner) }}"
+                        alt="{{$fase->banner}}" height="10%"></td>
                     <td>{{ $fase->objetivo }}</td>
                     <td>{{ $fase->pontuacao }}</td>
                     <td>{{ $fase->avaliacao }}</td>
-                    <td><a href="{{ asset('storage/'. $fase->documento) }}">
-                    <i class="fas fa-file"> {{$fase->documento}}</i>
+                    <td><a href="{{ url("http://gamecomstorage.s3-sa-east-1.amazonaws.com/". $fase->documento) }}">
+                    <i class="fas fa-file"> {{$fase->nomefase}}</i>
                     </a></td>
-                    <td>{{ \Carbon\Carbon::parse($fase->prazo)->format('d/m/Y')}}</td>
-                    <td><img src="{{ asset('storage/'. $fase->medalha->imagem) }}"
-                        alt="{{$fase->banner}}" width="100px" height="50px"></td>
+                    @if ($fase->prazo >= date('Y-m-d'))
+                        <td class="text-green">{{ \Carbon\Carbon::parse($fase->prazo)->format('d/m/Y') }}</td>
+                    @else
+                        <td class="text-danger"><s>{{ \Carbon\Carbon::parse($fase->prazo)->format('d/m/Y') }}</s></td>
+                    @endif
+                    <td><img src="{{ url("http://gamecomstorage.s3-sa-east-1.amazonaws.com/". $fase->medalha->imagem) }}"
+                        alt="{{$fase->medalha->imagem}}" height="10%"></td>
                     <td>{{ $fase->disciplina->nome}}</td>
                     <td>
                         <form action="{{ route('fases.destroy',$fase->id) }}" method="POST">

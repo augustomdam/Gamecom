@@ -20,8 +20,8 @@
             <tr>
                 <td>{{ $medalha->id }}</td>
                 <td>{{ $medalha->nome }}</td>
-                <td><img src="{{ asset('storage/'. $medalha->imagem) }}"
-                    alt="{{$medalha->imagem}}" width="100px" height="50px"></td>
+                <td><img src="{{ url("http://gamecomstorage.s3-sa-east-1.amazonaws.com/". $medalha->imagem) }}"
+                    alt="{{$medalha->imagem}}" height="7%"></td>
                 <td>{{ $medalha->descricao }}</td>
                 <td>{{ $medalha->disciplina->nome }}</td>
                 <td>

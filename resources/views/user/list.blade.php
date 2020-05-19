@@ -29,7 +29,7 @@
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
                 <td>
-                    <img src="{{ asset('storage/'. $user->imagem) }}" alt="{{$user->imagem}}" width="70px" height="50px"
+                    <img src="{{ url("http://gamecomstorage.s3-sa-east-1.amazonaws.com/". $user->imagem)}}" alt="{{$user->imagem}}" width="70px" height="50px"
                         class="img-circle">
                 </td>
                 <td>

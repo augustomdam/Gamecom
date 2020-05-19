@@ -89,8 +89,8 @@
     </div>
     <footer class="footer">
         <div class="container">
-            <span class="text-muted">
-                Developed by <a href="" target="_blank">Augusto Santos <i class="ion ion-alert"></i></a> &copy; 2019</span>
+            <span class="text-muted text-black-50">
+                Developed by <a href="https://www.facebook.com/augustodam" target="_blank">Augusto Santos <i class="ion ion-alert"></i></a> &copy; {{date('Y')}}</span>
         </div>
     </footer>
 </body>

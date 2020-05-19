@@ -29,7 +29,6 @@ class DisciplinaPolicy
             return $user->id == $disciplina->user_id;
         } elseif ($user->isAluno()) {
             $matriculas = $user->matriculas;
-
             foreach ($matriculas as $matricula) {
                 return  $matricula->disciplina_id == $disciplina->id;
             }

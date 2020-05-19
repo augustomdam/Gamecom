@@ -12,7 +12,9 @@ class GamificacaoController extends Controller
 {
     public function index(Disciplina $disciplina){
         $fases = Fase::where('disciplina_id', $disciplina->id)->get();
-        $gamificacao = Gamificacao::find($disciplina->id);
+        $gamificacaos = Gamificacao::where('disciplina_id', $disciplina->id)->get();
+        foreach($gamificacaos as $gamificacao){}
+        // dd($gamificacao);
         return view('public.gamificacao', compact('disciplina', 'fases', 'gamificacao'));
     }
 }

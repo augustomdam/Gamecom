@@ -57,7 +57,7 @@
                                     <select class="custom-select" id="inputGroupSelect01" name="disciplina_id">
                                         @foreach ($disciplinas as $disciplina)
                                             @can('view', $disciplina)
-                                                <option selected="selected" value="{{$disciplina->id}}">{{$disciplina->nome}}
+                                                <option value="{{$disciplina->id}}">{{$disciplina->nome}}
                                                 </option>
                                             @endcan
                                         @endforeach

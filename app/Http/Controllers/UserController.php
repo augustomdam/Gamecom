@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -32,24 +33,32 @@ class UserController extends Controller
 
     public function profileUpdate(Request $request, User $user)
     {
-
-        $request->validate([
-            'imagem' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10240',
-        ]);
-        if ($request->imagem != null && $request->password != null) {
-            $imageName = time() . '.' . request()->imagem->getClientOriginalExtension();
+        Storage::delete($user->imagem);
+        if ($request->name = null) {
             $user->update([
-                'name' => $request['name'],
                 'password' => Hash::make($request['password']),
-                'imagem' => $request['imagem']->storeAs('users', $imageName),
+                'imagem' => Storage::put('users', $request['imagem'], 'public'),
             ]);
             return redirect()->route('user.profile')
                 ->with('success', 'Perfil atualizado com Sucesso!');
-        } else {
+
+        }elseif($request->password = null){
             $user->update([
                 'name' => $request['name'],
-                // 'password' => Hash::make($request['password']),
-                // 'imagem' => $request['imagem']->storeAs('users', $imageName),
+                'imagem' => Storage::put('users', $request['imagem'], 'public'),
+            ]);
+
+        }elseif($request->imagem = null){
+            $user->update([
+                'name' => $request['name'],
+                'password' => Hash::make($request['password']),
+            ]);
+
+        } else {
+             $user->update([
+                'name' => $request['name'],
+                'password' => Hash::make($request['password']),
+                'imagem' => Storage::put('users', $request['imagem'], 'public'),
             ]);
             return redirect()->route('user.profile')
                 ->with('success', 'Perfil atualizado com Sucesso!');
@@ -77,7 +86,6 @@ class UserController extends Controller
 
     public function deleteFuncao(User $user, Funcao $funcao)
     {
-
         $user_funcao = DB::table('users_funcaos')
                         ->where('user_id', $user->id)
                         ->where( 'funcao_id', $funcao->id)
@@ -85,4 +93,6 @@ class UserController extends Controller
         return redirect()->route('user.list')
             ->with('success', 'Função desvinculada com Sucesso!');
     }
+
+
 }

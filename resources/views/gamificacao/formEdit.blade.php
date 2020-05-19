@@ -65,7 +65,6 @@
                                         <label class="input-group-text" for="inputGroupSelect01">Disciplina</label>
                                     </div>
                                     <select class="custom-select" id="inputGroupSelect01" name="disciplina_id">
-                                        <option selected>Selecione...</option>
                                         @foreach ($disciplinas as $disciplina)
                                             @can('view', $disciplina)
                                                 <option value="{{$disciplina->id}}">{{$disciplina->nome}}</option>
